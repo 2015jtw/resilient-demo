@@ -7,7 +7,9 @@ export default async function Home() {
   return (
     <div className="">
       <h1>Resilient Demo</h1>
-      {JSON.stringify(post.id)}
+      <p>Post ID: {post.id}</p>
+      <h2>{post.title.rendered}</h2>
+      <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
     </div>
   );
 }
