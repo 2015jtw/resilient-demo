@@ -1,16 +1,24 @@
 // app/posts/[id]/page.tsx
-import React, { use } from "react";
+
+interface PostProps {
+  params: { id: string };
+}
 
 async function getPostById(id: string) {
-  const response = await fetch(`/api/getPostById?id=${id}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/getPostById?id=${id}`,
+    { cache: "no-store" }
+  );
+
   if (!response.ok) {
     throw new Error("Failed to fetch post data");
   }
+
   return response.json();
 }
 
-export default function PostPage({ params }: { params: { id: string } }) {
-  const post = use(getPostById(params.id));
+export default async function PostPage({ params }: PostProps) {
+  const post = await getPostById(params.id);
 
   return (
     <div>

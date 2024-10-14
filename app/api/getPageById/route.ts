@@ -1,4 +1,3 @@
-// app/api/getPostById/route.ts
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -7,26 +6,24 @@ export async function GET(request: Request) {
 
   if (!id) {
     return NextResponse.json(
-      { message: "Post ID is required" },
+      { message: "Page ID is required" },
       { status: 400 }
     );
   }
 
   try {
-    // Construct the absolute URL
-    const url = `https://public-api.wordpress.com/wp/v2/sites/resilient.llc/posts/${id}`;
-
+    const url = `https://public-api.wordpress.com/wp/v2/sites/resilient.llc/pages/${id}`;
     const response = await fetch(url);
 
     if (!response.ok) {
       return NextResponse.json(
-        { message: "Post not found" },
+        { message: "Page not found" },
         { status: response.status }
       );
     }
 
-    const post = await response.json();
-    return NextResponse.json(post);
+    const page = await response.json();
+    return NextResponse.json(page);
   } catch (error) {
     return NextResponse.json(
       { message: "Internal Server Error", error },
