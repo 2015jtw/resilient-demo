@@ -44,6 +44,13 @@ export default function Home() {
   return (
     <div className="container mx-auto p-4">
       <div className="my-5">
+        <h1>Routing for Navigation Menu</h1>
+        <p id="home">Home</p>
+        <p id="about-us">About Us</p>
+        <p id="blog">Blog</p>
+        <p id="contact-us">Contact</p>
+      </div>
+      <div className="my-5">
         <h1 className="text-xl">Grab Post Wordpress Test</h1>
         <p>Post ID: {post.id}</p>
         <h2 className="font-semibold py-4">{post.title.rendered}</h2>
