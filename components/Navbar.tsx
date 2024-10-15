@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import {
   Dialog,
   DialogPanel,
@@ -73,7 +73,7 @@ export default function Navbar() {
             to="home"
             smooth={true}
             duration={500}
-            className="-m-1.5 p-1.5"
+            className="-m-1.5 p-1.5 cursor-pointer"
           >
             <span className="sr-only">Your Company</span>
             <Image
