@@ -33,7 +33,7 @@ export default function Home() {
         );
         const titleElement = doc.querySelector(".wp-block-heading");
         const descriptionElement = doc.querySelector("p.has-text-color");
-        const descContent = doc.querySelector("blockquote.wp-block-quote p");
+        const descContent = doc.querySelector(".wp-block-quote p");
 
         if (imgElement) {
           setImageUrl(imgElement.src); // Extract the image URL
