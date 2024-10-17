@@ -2,6 +2,7 @@ import AboutSection from "@/components/About";
 import HeroSection from "@/components/Hero-Section";
 import ImageWithText from "@/components/ImageWithText";
 
+// refactor into function in data or utils
 const servicesData = [
   {
     title: "Crisis Leadership",
@@ -47,8 +48,9 @@ const servicesData = [
 
 export default function Home() {
   return (
-    <div className="container mx-auto">
-      <div className="my-5">
+    <div className="">
+      {/* TODO: ADD IDS TO COMPONENTS */}
+      {/* <div className="my-5">
         <h1 className="text-center pb-4 font-semibold text-2xl">
           Routing for Navigation Menu
         </h1>
@@ -58,10 +60,10 @@ export default function Home() {
           <p id="blog">Blog</p>
           <p id="contact-us">Contact</p>
         </div>
-      </div>
+      </div> */}
       <HeroSection />
 
-      <div className="bg-white">
+      <div className="bg-white container mx-auto">
         <h2 className="text-center text-2xl text-black my-5">Our Services</h2>
         <div className="flex flex-col gap-30 w-full">
           {servicesData.map((service, idx) => {

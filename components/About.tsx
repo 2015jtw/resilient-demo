@@ -4,8 +4,8 @@ import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
 export default function AboutSection() {
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section className="py-16 bg-primary">
+      <div className="container mx-auto px-4 max-w-4xl text-primary-foreground">
         <h2 className="text-3xl font-bold text-center mb-8">About Us</h2>
 
         <div className="space-y-6 mb-12 text-gray-600">
