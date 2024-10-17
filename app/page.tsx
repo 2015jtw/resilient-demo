@@ -1,6 +1,8 @@
+"use client";
 import AboutSection from "@/components/About";
 import HeroSection from "@/components/Hero-Section";
 import ImageWithText from "@/components/ImageWithText";
+import ClientForm from "@/components/ClientForm";
 
 // refactor into function in data or utils
 const servicesData = [
@@ -63,9 +65,9 @@ export default function Home() {
       </div> */}
       <HeroSection />
 
-      <div className="bg-white container mx-auto">
+      <div className="bg-white ">
         <h2 className="text-center text-2xl text-black my-5">Our Services</h2>
-        <div className="flex flex-col gap-30 w-full">
+        <div className="flex flex-col gap-30 w-full container mx-auto">
           {servicesData.map((service, idx) => {
             return (
               <ImageWithText
@@ -81,6 +83,7 @@ export default function Home() {
           })}
         </div>
         <AboutSection />
+        <ClientForm />
       </div>
     </div>
   );

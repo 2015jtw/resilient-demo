@@ -4,13 +4,13 @@ import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
 export default function AboutSection() {
   return (
-    <section className="py-16 bg-secondary">
+    <section className="mt-10 py-8 bg-secondary">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
           About Us
         </h2>
 
-        <div className="space-y-6 mb-12 text-foreground">
+        <div className="space-y-6 mb-8 text-foreground">
           <p>
             Resilient, LLC is a nontraditional advisory service focused on
             guiding boards and executive teams to appropriately develop risk and
