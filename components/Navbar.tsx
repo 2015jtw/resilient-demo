@@ -119,9 +119,7 @@ function Navbar({ className }: { className?: string }) {
               </div>
             </MenuItem>
 
-            <HoveredLink href="#about" item="About">
-              About
-            </HoveredLink>
+            <HoveredLink href="#about">About</HoveredLink>
           </div>
 
           <Link href="#contact-form">
