@@ -44,7 +44,7 @@ const ImageWithText = ({
         </p>
         <Link
           href={link}
-          className={`${buttonVariants({ variant: "destructive" })} mx-10 mt-4`}
+          className={`${buttonVariants({ variant: "secondary" })} mx-10 mt-4`}
         >
           {cta}
         </Link>
