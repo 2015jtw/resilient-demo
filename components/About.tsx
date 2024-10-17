@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { FaMedium } from "react-icons/fa";
-import { FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaMedium } from "react-icons/fa";
 
 export default function AboutSection() {
   return (
