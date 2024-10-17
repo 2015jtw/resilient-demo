@@ -3,7 +3,7 @@ import { FaFacebook, FaLinkedin, FaMedium } from "react-icons/fa";
 
 export default function AboutSection() {
   return (
-    <section className="mt-10 py-8 bg-secondary">
+    <section className="mt-10 py-8 bg-secondary" id="about">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
           About Us

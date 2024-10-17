@@ -10,6 +10,7 @@ const ImageWithText = ({
   cta,
   link,
   swap,
+  id,
 }: {
   image: string;
   title: string;
@@ -17,12 +18,14 @@ const ImageWithText = ({
   cta: string;
   link: string;
   swap?: boolean;
+  id?: string;
 }) => {
   return (
     <div
       className={`w-full flex flex-col md:flex-row items-center justify-between bg-white ${
         swap ? "md:flex-row-reverse" : ""
       }`}
+      id={id}
     >
       <div className="w-full h-auto rounded">
         <Image

@@ -124,9 +124,11 @@ function Navbar({ className }: { className?: string }) {
             </HoveredLink>
           </div>
 
-          <Button className="rounded-md" variant={"secondary"}>
-            Contact Us
-          </Button>
+          <Link href="#contact-form">
+            <Button className="rounded-md" variant={"secondary"}>
+              Contact Us
+            </Button>
+          </Link>
         </div>
       </Menu>
     </div>
