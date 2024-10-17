@@ -26,18 +26,14 @@ const config: Config = {
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "rgb(243 244 246)",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        yellow: {
-          DEFAULT: "#ffe074",
-        },
         accent: {
-          DEFAULT: "#35845d",
+          DEFAULT: "#ffe074",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {

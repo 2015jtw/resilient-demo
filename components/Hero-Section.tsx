@@ -17,7 +17,7 @@ export default function HeroSection() {
             <p className="text-sm text-white">
               Our overarching mission is to help strengthen your capabilities.
             </p>
-            <h1 className="text-4xl font-bold tracking-tight text-yellow sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-accent sm:text-6xl">
               Resilient LLC
             </h1>
             <p className="my-6 text-lg font-medium leading-8 text-white">
