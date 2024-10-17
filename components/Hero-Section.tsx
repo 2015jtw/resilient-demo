@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <div className="relative isolate flex items-center justify-center h-[600px]">
+    <div className="relative isolate flex items-center justify-center h-[740px]">
       <Image
         src="/images/hero-section.jpg"
         alt="forest"
