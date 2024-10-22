@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -24,11 +22,6 @@ export default function HeroSection() {
               The COVID-19 pandemic was a wake-up call to leadership that
               preparedness matters.
             </p>
-            <Button>
-              <Link href="#" className="underline-offset-4 hover:underline">
-                Get in Touch
-              </Link>
-            </Button>
           </div>
         </div>
       </div>
