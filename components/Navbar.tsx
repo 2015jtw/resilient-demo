@@ -91,7 +91,7 @@ function Navbar({ className }: { className?: string }) {
             </MenuItem>
 
             <MenuItem setActive={setActive} active={active} item="Blog">
-              <div className="  text-sm grid grid-cols-2 gap-10 p-4">
+              <div className="text-sm grid grid-cols-2 gap-10 p-4">
                 <ProductItem
                   title="Algochurn"
                   href="https://algochurn.com"
@@ -123,9 +123,7 @@ function Navbar({ className }: { className?: string }) {
           </div>
 
           <Link href="#contact-form">
-            <Button className="rounded-md" variant={"secondary"}>
-              Contact Us
-            </Button>
+            <Button className="rounded-md">Contact Us</Button>
           </Link>
         </div>
       </Menu>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Fragment from "react";
 
 interface KeyElement {
   title: string;
@@ -22,8 +23,8 @@ interface ServiceHeroProps {
 
 const ServiceHero = ({ service }: ServiceHeroProps) => {
   return (
-    <div>
-      {/* Hero Section */}
+    <>
+      {/* Image Section */}
       <div className="relative isolate flex items-center justify-center h-[740px]">
         <Image
           src={service.imageSrc}
@@ -34,7 +35,7 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
         <div className="mx-auto max-w-4xl w-full relative z-10">
           <div className="relative mx-auto px-10 md:px-0 max-w-2xl">
             <div className="text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-accent sm:text-6xl">
+              <h1 className="text-2xl font-light tracking-tight text-accent sm:text-6xl">
                 {service.title}
               </h1>
             </div>
@@ -43,55 +44,58 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
       </div>
 
       {/* Main Service Description */}
-      <div className="mx-auto max-w-3xl py-12 px-6 lg:px-0">
-        <div className="mb-10">
-          <p className="text-lg font-medium leading-8">{service.intro}</p>
-        </div>
+      <div className="pt-12">
+        <div className="mx-auto max-w-3xl px-6 lg:px-0">
+          {/* Intro section */}
+          <div className="mb-10">
+            <p className="text-lg font-medium leading-8">{service.intro}</p>
+          </div>
 
-        {/* Introduction Section */}
-        <div className="mb-10">
-          <h2 className="text-2xl font-semibold text-primary">Our Approach</h2>
+          {/* Approach Section */}
+          <div className="mb-10">
+            <h2 className="text-3xl font-medium pb-4">Our Approach</h2>
 
-          {service.approach.map((point, index) => (
-            <p key={index} className="text-lg">
-              {point}
-            </p>
-          ))}
-        </div>
-
-        {/* Key Elements Section */}
-        <div className="mb-10">
-          <h2 className="text-2xl font-semibold text-primary">Key Elements</h2>
-          <ul className="mt-4 space-y-4 list-disc pl-6">
-            {service.keyElements.map((element, index) => (
-              <li key={index}>
-                <strong className="text-xl">{element.title}: </strong>
-                <span className="mt-2 text-lg">{element.description}</span>
-              </li>
+            {service.approach.map((point, index) => (
+              <p key={index} className="text-lg">
+                {point}
+              </p>
             ))}
-          </ul>
+          </div>
+
+          {/* Key Elements Section */}
+          <div className="mb-10">
+            <h2 className="text-3xl font-medium pb-4">Key Elements</h2>
+            <ul className="space-y-4 list-disc pl-6">
+              {service.keyElements.map((element, index) => (
+                <li key={index}>
+                  <strong className="text-lg font-semibold">
+                    {element.title}:{" "}
+                  </strong>
+                  <span className="mt-2 text-lg">{element.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="mb-10">
-          <h2 className="text-3xl font-semibold">Why Choose Us</h2>
+        <div className="bg-primary text-primary-foreground">
+          <div className="mx-auto max-w-3xl py-8 px-6 lg:px-0">
+            <h2 className="text-3xl font-medium pb-4">Why Choose Us</h2>
 
-          {service.chooseUs.map((point, index) => (
-            <p key={index} className="mt-4 text-lg">
-              {point}
-            </p>
-          ))}
-          <p>{service.hook}</p>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center">
-          <Button>
-            <a className="underline-offset-4 hover:underline">Get Started</a>
-          </Button>
+            {service.chooseUs.map((point, index) => (
+              <p key={index} className="mb-4 text-lg">
+                {point}
+              </p>
+            ))}
+            <p className="italic">{service.hook}</p>
+            <Button variant={"secondary"} className="my-4">
+              <a className="underline-offset-4 hover:underline">Get Started</a>
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

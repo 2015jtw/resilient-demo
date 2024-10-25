@@ -1,3 +1,4 @@
+// tailwind.config.js
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 
@@ -26,14 +27,15 @@ const config: Config = {
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "rgb(243 244 246)",
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "#ffe074",
+          DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
@@ -60,4 +62,5 @@ const config: Config = {
   },
   plugins: [tailwindcssAnimate],
 };
+
 export default config;

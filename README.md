@@ -37,10 +37,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## NOTES on Tailwind Color Variables
 
-`background`: white - background color of the entire site.
-`foreground`: black - primary text color.
-`primary`: green | primary color for buttons.
-`primary-foreground`: white | color that goes with primary color btns.
-`secondary`: light secondary color for backgrounds and elements
-`accent`: yellow | use for btn hover states
-`accent-foreground`: white | complementary text color
+We are using ShadCN's green theme
