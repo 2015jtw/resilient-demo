@@ -1,11 +1,17 @@
 import { Fragment } from "react";
 import aboutData from "@/lib/aboutData";
+import NewsPaper from "@/components/Newspaper";
 
 export default function AboutUs() {
   return (
     <>
-      <h1>About Us</h1>
-
+      <div className="mt-10">
+        <NewsPaper
+          title={aboutData.sectionOne.title}
+          description={aboutData.sectionOne.description}
+          imageUrl="/images/assessments.jpeg"
+        />
+      </div>
       <div className="container mx-auto">
         {Object.values(aboutData).map((section, index) => (
           <div key={index}>
