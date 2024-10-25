@@ -7,16 +7,13 @@ interface KeyElement {
 }
 
 interface Service {
+  imageSrc: string;
   title: string;
-  description: string;
-  image: string;
-  cta: string;
-  approach: string;
+  intro: string;
+  approach: string[];
   keyElements: KeyElement[];
-  whyChooseUs: string;
-  conclusion: string;
+  chooseUs: string[];
   hook: string;
-  link: string;
 }
 
 interface ServiceHeroProps {
@@ -29,7 +26,7 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
       {/* Hero Section */}
       <div className="relative isolate flex items-center justify-center h-[740px]">
         <Image
-          src={service.image}
+          src={service.imageSrc}
           alt={service.title}
           fill
           style={{ objectFit: "cover" }}
@@ -48,13 +45,18 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
       {/* Main Service Description */}
       <div className="mx-auto max-w-3xl py-12 px-6 lg:px-0">
         <div className="mb-10">
-          <p className="text-lg font-medium leading-8">{service.description}</p>
+          <p className="text-lg font-medium leading-8">{service.intro}</p>
         </div>
 
         {/* Introduction Section */}
         <div className="mb-10">
           <h2 className="text-2xl font-semibold text-primary">Our Approach</h2>
-          <p className="mt-4 text-lg">{service.approach}</p>
+
+          {service.approach.map((point, index) => (
+            <p key={index} className="text-lg">
+              {point}
+            </p>
+          ))}
         </div>
 
         {/* Key Elements Section */}
@@ -73,20 +75,19 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
         {/* Why Choose Us Section */}
         <div className="mb-10">
           <h2 className="text-3xl font-semibold">Why Choose Us</h2>
-          <p className="mt-4 text-lg">{service.whyChooseUs}</p>
-          <p>{service.conclusion}</p>
+
+          {service.chooseUs.map((point, index) => (
+            <p key={index} className="mt-4 text-lg">
+              {point}
+            </p>
+          ))}
           <p>{service.hook}</p>
         </div>
 
         {/* Call to Action */}
         <div className="text-center">
           <Button>
-            <a
-              href={service.link}
-              className="underline-offset-4 hover:underline"
-            >
-              {service.cta}
-            </a>
+            <a className="underline-offset-4 hover:underline">Get Started</a>
           </Button>
         </div>
       </div>

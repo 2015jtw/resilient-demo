@@ -15,19 +15,19 @@ const services = [
   {
     name: "Crisis Leadership",
     description: "Our philosophy is to empower leaders to be well-prepared",
-    href: "#crisis-leadership",
+    href: "/services/crisisleadership",
     imageUrl: "https://assets.aceternity.com/demos/algochurn.webp",
   },
   {
     name: "Crisis Communication",
     description: "Communicating effectively in a crisis is crucial",
-    href: "#crisis-communication",
+    href: "/services/crisiscommunication",
     imageUrl: "https://assets.aceternity.com/demos/tailwindmasterkit.webp",
   },
   {
     name: "Risk Management",
     description: "The storm has arrived…",
-    href: "#risk-management",
+    href: "/services/riskmanagement",
     imageUrl:
       "https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png",
   },
@@ -35,13 +35,13 @@ const services = [
     name: "Business Continuity",
     description:
       "Recognize the critical need of maintaining key functionality in disruptive environments",
-    href: "#business-continuity",
+    href: "/services/businesscontinuity",
     imageUrl: "https://assets.aceternity.com/demos/algochurn.webp",
   },
   {
-    name: "Business Assessments",
+    name: "Assessments",
     description: "Provide senior leadership and boards with strategic plans",
-    href: "#business-assessments",
+    href: "/services/assessments",
     imageUrl:
       "https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png",
   },
