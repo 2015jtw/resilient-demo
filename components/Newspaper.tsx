@@ -12,7 +12,7 @@ export default function NewsPaper({
   imageUrl,
 }: NewsPaperProps) {
   return (
-    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center pt-16 p-4 overflow-hidden">
       <Image
         src={imageUrl}
         alt="Background of people"
@@ -21,13 +21,18 @@ export default function NewsPaper({
         quality={100}
         className="absolute inset-0"
       />
-      <div className="absolute inset-0 bg-red-600 bg-opacity-30" />
-      <div className="bg-white max-w-3xl p-8 md:p-12 relative z-10">
-        <h1 className="text-red-600 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+      <div className="absolute inset-0 bg-opacity-30" />
+      <div className="bg-white max-w-2xl mt-12 p-6 relative z-10 rounded-md shadow-xl">
+        <h1 className=" text-2xl md:text-3xl leading-tight mb-6 text-center font-medium">
           {title}
         </h1>
         {description.map((paragraph, index) => (
-          <p key={index} className="text-gray-800 text-sm md:text-base mt-4">
+          <p
+            key={index}
+            className={`text-gray-800 text-sm md:text-base mt-4 ${
+              index === description.length - 1 ? "italic md:text-lg mt-6" : ""
+            }`}
+          >
             {paragraph}
           </p>
         ))}
