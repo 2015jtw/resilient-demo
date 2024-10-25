@@ -35,7 +35,7 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
         <div className="mx-auto max-w-4xl w-full relative z-10">
           <div className="relative mx-auto px-10 md:px-0 max-w-2xl">
             <div className="text-center">
-              <h1 className="text-2xl font-light tracking-tight text-accent sm:text-6xl">
+              <h1 className="text-3xl font-light tracking-tight text-accent sm:text-6xl">
                 {service.title}
               </h1>
             </div>
@@ -56,7 +56,7 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
             <h2 className="text-3xl font-medium pb-4">Our Approach</h2>
 
             {service.approach.map((point, index) => (
-              <p key={index} className="text-lg">
+              <p key={index} className="text-lg pb-4">
                 {point}
               </p>
             ))}
