@@ -1,42 +1,58 @@
 import { Fragment } from "react";
-import aboutData from "@/lib/aboutData";
-import NewsPaper from "@/components/Newspaper";
+import { heroSection, contentSections } from "@/lib/aboutData";
+// import NewsPaper from "@/components/Newspaper";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import TwoColumnLayout from "@/components/TwoColumn";
+import Image from "next/image";
 
 export default function AboutUs() {
   return (
     <>
-      {/* <div className="">
-        <NewsPaper
-          title={aboutData.sectionOne.title}
-          description={aboutData.sectionOne.description}
-          imageUrl="/images/assessments.jpeg"
+      <div className="relative min-h-screen flex items-center justify-center pt-16 p-4 overflow-hidden">
+        {/* Background Image */}
+        <Image
+          src={heroSection.backgroundImageUrl}
+          alt="Background image"
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          className="absolute inset-0"
         />
-      </div> */}
-      <div className="flex items-center justify-center min-h-screen bg-cover bg-center pt-16 p-4 overflow-hidden">
-        <Card className="max-w-lg w-full bg-white shadow-xl mt-12 p-6">
-          <CardHeader>
-            <CardTitle>{aboutData.sectionOne.title}</CardTitle>
+        {/* Overlay for darker background */}
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+
+        {/* Card Component with Content */}
+        <Card className="relative max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-xl w-full bg-white shadow-xl my-16 md:my-12 p-6 z-10">
+          <CardHeader className="px-0 py-4">
+            <CardTitle className="text-center">{heroSection.title}</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {aboutData.sectionOne.description.map((paragraph, index) => (
-              <p key={index} className="text-md font-medium leading-8">
+          <CardContent className="space-y-4 px-0 pb-0">
+            {heroSection.description.map((paragraph, index) => (
+              <p
+                key={index}
+                className={`font-medium leading-8 ${
+                  index === 0 ? "italic" : ""
+                }`}
+              >
                 {paragraph}
               </p>
             ))}
           </CardContent>
         </Card>
       </div>
-      <div className="container mx-auto">
-        {Object.values(aboutData).map((section, index) => (
-          <div key={index}>
-            <h2 className="text-3xl font-medium pb-4">{section.title}</h2>
-            {section.description.map((paragraph, i) => (
-              <p key={i} className="text-lg font-medium leading-8">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+
+      <div className="container mx-auto mb-8">
+        {Object.values(contentSections).map((section, idx) => (
+          <TwoColumnLayout
+            key={idx}
+            item={{
+              title: section.title,
+              description: section.description,
+              imageAlt: "Featured content",
+              imageSrc: section.imageSrc,
+            }}
+            imageLeft={section.imageLeft}
+          />
         ))}
       </div>
     </>
