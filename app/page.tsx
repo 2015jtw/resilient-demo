@@ -54,9 +54,7 @@ export default function Home() {
       <HeroSection />
 
       <div className="bg-white">
-        <h2 className="text-center text-4xl font-semibold text-black py-8">
-          Our Services
-        </h2>
+        <h2 className="text-center text-4xl py-8 mt-4">Our Services</h2>
         <div className="flex flex-col gap-30 w-full container mx-auto">
           {servicesData.map((service, idx) => {
             return (

@@ -22,7 +22,7 @@ const ImageWithText = ({
 }) => {
   return (
     <div
-      className={`w-full flex flex-col md:flex-row items-center justify-between bg-white ${
+      className={`w-full flex flex-col md:flex-row items-center justify-between bg-white py-4 ${
         swap ? "md:flex-row-reverse" : ""
       }`}
       id={id}
@@ -38,16 +38,18 @@ const ImageWithText = ({
         />
       </div>
 
-      <div className={`w-full my-4 md:mt-0 p-4 md:p-0`}>
-        <h4 className="md:px-10 text-4xl sm:text-2xl font-bold mb-2 text-left">
+      <div
+        className={`w-full my-4 md:mt-0 px-2 ${swap ? "md:pr-4" : "md:pl-4"}`}
+      >
+        <h4 className="text-xl sm:text-2xl font-bold mb-2 text-left">
           {title}
         </h4>
-        <p className="md:px-10 text-sm md:text-md xl:text-lg font-light">
+        <p className="text-sm md:text-md lg:text-lg font-light leading-8">
           {description}
         </p>
         <Link
           href={link}
-          className={`${buttonVariants({ variant: "secondary" })} mx-10 mt-4`}
+          className={`${buttonVariants({ variant: "secondary" })} mt-4 text-sm md:text-md lg:text-lg`}
         >
           {cta}
         </Link>
