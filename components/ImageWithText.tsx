@@ -22,7 +22,7 @@ const ImageWithText = ({
 }) => {
   return (
     <div
-      className={`w-full flex flex-col md:flex-row items-center justify-between bg-white py-4 ${
+      className={`w-full flex flex-col md:flex-row items-center justify-between bg-white py-4 px-2 md:px-0 ${
         swap ? "md:flex-row-reverse" : ""
       }`}
       id={id}
@@ -38,9 +38,7 @@ const ImageWithText = ({
         />
       </div>
 
-      <div
-        className={`w-full my-4 md:mt-0 px-2 ${swap ? "md:pr-4" : "md:pl-4"}`}
-      >
+      <div className={`w-full my-4 md:mt-0 ${swap ? "md:pr-4" : "md:pl-4"}`}>
         <h4 className="text-xl sm:text-2xl font-bold mb-2 text-left">
           {title}
         </h4>
