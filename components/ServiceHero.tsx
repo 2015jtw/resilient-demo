@@ -32,7 +32,7 @@ const ServiceHero = ({ service }: ServiceHeroProps) => {
           fill
           style={{ objectFit: "cover" }}
         />
-        <div className="mx-auto max-w-4xl w-full relative z-10">
+        <div className="mx-auto max-w-4xl w-full relative">
           <div className="relative mx-auto px-10 md:px-0 max-w-2xl">
             <div className="text-center">
               <h1 className="text-3xl font-light tracking-tight text-accent sm:text-6xl">

@@ -70,6 +70,10 @@ const callsToAction = [
 export default function TailwindNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const handleClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="bg-white">
       <nav
@@ -214,6 +218,7 @@ export default function TailwindNav() {
                         key={item.name}
                         as="a"
                         href={item.href}
+                        onClick={handleClick}
                         className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       >
                         {item.name}
@@ -223,12 +228,14 @@ export default function TailwindNav() {
                 </Disclosure>
                 <Link
                   href="/about-us"
+                  onClick={handleClick}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   About Us
                 </Link>
                 <Link
                   href="/blog"
+                  onClick={handleClick}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Blog

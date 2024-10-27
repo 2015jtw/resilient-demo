@@ -2,14 +2,14 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <div className="relative isolate flex items-center justify-center h-screen">
+    <div className="relative flex items-center justify-center h-screen">
       <Image
         src="/images/hero-section.jpg"
         alt="forest"
         fill
         objectFit="cover"
       />
-      <div className="mx-auto max-w-4xl w-full relative z-10">
+      <div className="mx-auto max-w-4xl w-full relative">
         <div className="relative mx-auto px-10 md:px-4 max-w-5xl h-[500px]">
           <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-16 h-full">
             {/* Left Column: Mission Statement and Title */}
