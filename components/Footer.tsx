@@ -5,13 +5,9 @@ import { FaMediumM } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-4">
+    <footer className="bg-gray-800 text-white py-8">
       <div className="container mx-auto ">
-        <div className="">
-          <h3 className="text-lg font-semibold mb-2 text-center">
-            ©2023 Resilient LLC | All Rights Reserved
-          </h3>
-
+        <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="flex justify-center space-x-6">
             <Link
               href="https://www.linkedin.com"
@@ -41,6 +37,9 @@ const Footer = () => {
               <span className="sr-only">Medium</span>
             </Link>
           </div>
+          <h3 className="text-lg font-semibold mb-2 text-center">
+            © 2023 Resilient LLC | All Rights Reserved
+          </h3>
         </div>
       </div>
     </footer>

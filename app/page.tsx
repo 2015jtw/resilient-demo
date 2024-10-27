@@ -21,7 +21,6 @@ export default async function Home() {
     {},
     options
   );
-  console.log(data);
 
   return (
     <>

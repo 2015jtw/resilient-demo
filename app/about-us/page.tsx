@@ -48,7 +48,7 @@ export default async function AboutUs() {
         <div className="absolute inset-0 bg-black bg-opacity-50" />
 
         {/* Card Component with Content */}
-        <Card className="relative max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-xl w-full bg-white shadow-xl my-16 md:my-12 p-6 z-10">
+        <Card className="relative max-w-xs sm:max-w-sm md:max-w-lg w-full bg-white shadow-xl my-16 md:my-12 p-6">
           <CardHeader className="px-0 py-4">
             <CardTitle className="text-center text-xl">
               {heroData[0].title}
