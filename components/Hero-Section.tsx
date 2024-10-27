@@ -11,7 +11,7 @@ export default function HeroSection() {
       />
       <div className="mx-auto max-w-4xl w-full relative z-10">
         <div className="relative mx-auto px-10 md:px-4 max-w-5xl h-[500px]">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 h-full">
+          <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-16 h-full">
             {/* Left Column: Mission Statement and Title */}
             <div className="md:w-2/3 text-center md:text-left flex flex-col justify-center md:gap-y-80">
               <h1 className="text-amber-300 text-4xl leading-10 font-bold tracking-tight sm:text-6xl">

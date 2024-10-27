@@ -6,6 +6,7 @@ const nextConfig = {
       "s.w.org",
       "assets.aceternity.com",
       "algochurn.com",
+      "cdn.sanity.io",
     ],
     dangerouslyAllowSVG: true,
   },

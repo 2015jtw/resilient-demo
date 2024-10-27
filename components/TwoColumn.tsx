@@ -2,52 +2,45 @@ import React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { urlFor } from "@/sanity/client";
+import Link from "next/link";
 
 interface ContentItem {
   title: string;
-  description: string | string[];
-  buttonText?: string;
-  imageAlt: string;
-  imageSrc: string;
+  body: { children: { text: string }[] }[]; // Adjusted to match your data structure
+  button_text?: string;
+  button_link?: string;
+  socialAltText: string;
+  image: { asset: { _ref: string } }; // Assuming the image structure you shared
 }
 
 interface TwoColumnLayoutProps {
-  item?: ContentItem;
+  item: ContentItem;
   imageLeft?: boolean;
 }
 
-const TwoColumnLayout = ({
-  item = {
-    title: "Compelling Headline Here",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    buttonText: "Get Started",
-    imageAlt: "Featured content",
-    imageSrc: "/images/about-1.jpg",
-  },
-  imageLeft = false,
-}: TwoColumnLayoutProps) => {
-  const descriptionContent = Array.isArray(item.description) ? (
-    item.description.map((paragraph, i) => (
-      <p key={i} className="text-lg text-gray-600 leading-8">
-        {paragraph}
-      </p>
-    ))
-  ) : (
-    <p className="text-lg text-gray-600 leading-8">{item.description}</p>
-  );
+const TwoColumnLayout = ({ item, imageLeft = false }: TwoColumnLayoutProps) => {
+  const descriptionContent = item.body.map((block, blockIdx) => (
+    <div key={blockIdx} className="text-lg leading-8 mb-4">
+      {block.children.map((child, childIdx) => (
+        <p key={childIdx}>{child.text}</p>
+      ))}
+    </div>
+  ));
 
   const ContentSection = (
     <div className="w-full md:w-1/2 space-y-6">
-      <h2 className="text-4xl font-bold text-gray-900">{item.title}</h2>
+      <h2 className="text-4xl font-bold ">{item.title}</h2>
       <div className="space-y-4">{descriptionContent}</div>
-      {item.buttonText && (
-        <Button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-          {item.buttonText}
-        </Button>
+      {item.button_text && item.button_link && (
+        <Link href={item.button_link}>
+          <Button className="mt-4">{item.button_text}</Button>
+        </Link>
       )}
     </div>
   );
+
+  const imageSrc = urlFor(item.image.asset._ref).url(); // Use the image builder
 
   const ImageSection = (
     <div className="w-full md:w-1/2 ">
@@ -55,8 +48,8 @@ const TwoColumnLayout = ({
         {/* 16:9 aspect ratio on mobile */}
         <AspectRatio ratio={16 / 9} className="bg-slate-50">
           <Image
-            src={item.imageSrc}
-            alt={item.imageAlt}
+            src={imageSrc}
+            alt={item.socialAltText}
             width={800}
             height={450}
             className="rounded-lg object-cover w-full h-full"
@@ -67,8 +60,8 @@ const TwoColumnLayout = ({
         {/* 3:4 aspect ratio on larger screens */}
         <AspectRatio ratio={3 / 4} className="bg-slate-50">
           <Image
-            src={item.imageSrc}
-            alt={item.imageAlt}
+            src={imageSrc}
+            alt={item.socialAltText}
             width={600}
             height={800}
             className="rounded-lg object-cover w-full h-full"

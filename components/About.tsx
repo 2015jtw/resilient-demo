@@ -1,42 +1,52 @@
 import Link from "next/link";
 import { FaFacebook, FaLinkedin, FaMedium } from "react-icons/fa";
+import { client } from "@/sanity/client";
 
-export default function AboutSection() {
+type TextChild = {
+  text: string;
+};
+
+type BodyItem = {
+  children: TextChild[];
+};
+
+type AboutData = {
+  title: string;
+  body: BodyItem[];
+  socialLinks: string[];
+  socialAltText: string[];
+};
+
+const ABOUT_QUERY = `*[_type == "homepageAbout"]{
+  title,
+  body,
+  socialLinks,
+  socialAltText
+}`;
+const options = { next: { revalidate: 30 } };
+
+export default async function AboutSection() {
+  const about = await client.fetch<AboutData[]>(ABOUT_QUERY, {}, options);
+
   return (
     <section className="py-8 md:pt-12" id="about">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h2 className="text-4xl text-center mb-8">About Us</h2>
+        <h2 className="text-4xl text-center mb-8">{about[0].title}</h2>
 
-        <div className="space-y-6 mb-8 px-8 text-foreground text-sm md:text-md lg:text-lg leading-8">
-          <p>
-            Resilient, LLC is a nontraditional advisory service focused on
-            guiding boards and executive teams to appropriately develop risk and
-            crisis management strategies. It is our goal to assist you in
-            developing a set of policies and practices that better prepare your
-            team for the inevitable crises that visit all of us at some point.
-          </p>
-          <p>
-            Resilient, LLC grew out of Resiliency Partners, founded in 2011 as a
-            specialized sub-consultancy supporting disaster response, hazard and
-            vulnerability assessments, business continuity, and emergency
-            preparedness. Our principal, Dr. Kevin Schaller, served in several
-            roles supporting public firms, government agencies, and higher
-            education, as well as extensive pro-bono services to nonprofit
-            organizations.
-          </p>
-          <p>
-            Resilient, LLC maintains a network of subject matter experts across
-            a wide spectrum of domains related to crises. We strive to provide
-            appropriate recommendations for the resources that may be required
-            to better prepare your organization, regardless of the current
-            environment, whether that be blue skies or in the midst of a
-            hurricane. We invite you to have a discussion with us.
-          </p>
+        <div className="space-y-6 mb-8 px-8">
+          {about[0].body.map((item, idx: number) => (
+            <p
+              className="text-foreground text-sm md:text-md lg:text-lg leading-8"
+              key={idx}
+            >
+              {item.children[0].text}
+            </p>
+          ))}
         </div>
 
         <div className="flex justify-center space-x-6">
           <Link
-            href="https://www.linkedin.com"
+            href={about[0].socialLinks[0]}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-blue-600 transition-colors"
@@ -45,7 +55,7 @@ export default function AboutSection() {
             <span className="sr-only">LinkedIn</span>
           </Link>
           <Link
-            href="https://www.facebook.com"
+            href={about[0].socialLinks[1]}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-blue-600 transition-colors"
@@ -54,7 +64,7 @@ export default function AboutSection() {
             <span className="sr-only">Facebook</span>
           </Link>
           <Link
-            href="https://medium.com"
+            href={about[0].socialLinks[2]}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-blue-600 transition-colors"
