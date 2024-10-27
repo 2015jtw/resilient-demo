@@ -167,7 +167,7 @@ export default function TailwindNav() {
           </Link>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/contact-us">
+          <Link href="#contact-form">
             <Button>Get in Touch</Button>
           </Link>
         </div>
@@ -236,10 +236,10 @@ export default function TailwindNav() {
               </div>
               <div className="py-6">
                 <Link
-                  href="#contact-us"
+                  href="#contact-form"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Contact Us
+                  Get in Touch
                 </Link>
               </div>
             </div>
