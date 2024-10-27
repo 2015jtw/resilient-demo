@@ -1,17 +1,43 @@
 import { Fragment } from "react";
-import { heroSection, contentSections } from "@/lib/aboutData";
-// import NewsPaper from "@/components/Newspaper";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import TwoColumnLayout from "@/components/TwoColumn";
 import Image from "next/image";
+import { client } from "@/sanity/client";
+import { type SanityDocument } from "next-sanity";
+import { urlFor } from "@/sanity/client";
 
-export default function AboutUs() {
+const CONTENT_QUERY = `*[_type == "contentSection"]{
+  title,
+  description,
+  imageSrc,
+  imageLeft,
+}`;
+const HERO_QUERY = `*[_type == "heroSection"]{
+  title,
+  description,
+  backgroundImageUrl,
+}`;
+const options = { next: { revalidate: 30 } };
+
+export default async function AboutUs() {
+  const contentData = await client.fetch<SanityDocument[]>(
+    CONTENT_QUERY,
+    {},
+    options
+  );
+
+  const heroData = await client.fetch<SanityDocument[]>(
+    HERO_QUERY,
+    {},
+    options
+  );
+
   return (
     <>
       <div className="relative min-h-screen flex items-center justify-center pt-16 p-4 overflow-hidden">
         {/* Background Image */}
         <Image
-          src={heroSection.backgroundImageUrl}
+          src={urlFor(heroData[0].backgroundImageUrl).url()}
           alt="Background image"
           layout="fill"
           objectFit="cover"
@@ -24,10 +50,12 @@ export default function AboutUs() {
         {/* Card Component with Content */}
         <Card className="relative max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-xl w-full bg-white shadow-xl my-16 md:my-12 p-6 z-10">
           <CardHeader className="px-0 py-4">
-            <CardTitle className="text-center">{heroSection.title}</CardTitle>
+            <CardTitle className="text-center text-xl">
+              {heroData[0].title}
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 px-0 pb-0">
-            {heroSection.description.map((paragraph, index) => (
+            {heroData[0].description.map((paragraph: string, index: number) => (
               <p
                 key={index}
                 className={`font-medium leading-8 ${
@@ -42,18 +70,30 @@ export default function AboutUs() {
       </div>
 
       <div className="container mx-auto mb-8">
-        {Object.values(contentSections).map((section, idx) => (
+        {contentData.map((section, idx) => (
           <TwoColumnLayout
             key={idx}
             item={{
               title: section.title,
-              description: section.description,
+              body: section.description,
+              socialAltText: "Featured content",
+              image: section.imageSrc,
+            }}
+            imageLeft={section.imageLeft}
+          />
+        ))}
+        {/* {Object.values(contentSections).map((section, idx) => (
+          <TwoColumnLayout
+            key={idx}
+            item={{
+              title: section.title,
+              body: section.description,
               imageAlt: "Featured content",
               imageSrc: section.imageSrc,
             }}
             imageLeft={section.imageLeft}
           />
-        ))}
+        ))} */}
       </div>
     </>
   );
