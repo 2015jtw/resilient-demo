@@ -36,7 +36,7 @@ export default async function AboutSection() {
         <div className="space-y-6 mb-8 px-8">
           {about[0].body.map((item, idx: number) => (
             <p
-              className="text-foreground text-sm md:text-md lg:text-lg leading-8"
+              className="text-foreground text-md md:text-lg leading-8"
               key={idx}
             >
               {item.children[0].text}

@@ -30,7 +30,7 @@ const TwoColumnLayout = ({ item, imageLeft = false }: TwoColumnLayoutProps) => {
 
   const ContentSection = (
     <div className="w-full md:w-1/2 space-y-6">
-      <h2 className="text-4xl font-bold ">{item.title}</h2>
+      <h3 className="text-3xl font-normal">{item.title}</h3>
       <div className="space-y-4">{descriptionContent}</div>
       {item.button_text && item.button_link && (
         <Link href={item.button_link}>

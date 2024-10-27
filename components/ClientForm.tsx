@@ -119,9 +119,7 @@ const ClientForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
-              Submit
-            </Button>
+            <Button type="submit">Submit</Button>
           </form>
         ) : (
           <div className="flex flex-col items-center justify-center gap-4 my-12">

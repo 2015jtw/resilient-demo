@@ -5,6 +5,7 @@ import Image from "next/image";
 import { client } from "@/sanity/client";
 import { type SanityDocument } from "next-sanity";
 import { urlFor } from "@/sanity/client";
+import ClientForm from "@/components/ClientForm";
 
 const CONTENT_QUERY = `*[_type == "contentSection"]{
   title,
@@ -69,7 +70,7 @@ export default async function AboutUs() {
         </Card>
       </div>
 
-      <div className="container mx-auto mb-8">
+      <div className="container mx-auto my-12 px-4 max-w-5xl py-6">
         {contentData.map((section, idx) => (
           <TwoColumnLayout
             key={idx}
@@ -83,6 +84,7 @@ export default async function AboutUs() {
           />
         ))}
       </div>
+      <ClientForm />
     </>
   );
 }

@@ -49,7 +49,7 @@ const posts = [
 
 export default function BlogIndex() {
   return (
-    <div className="container mx-auto px-4 py-8 mt-20">
+    <div className="container mx-auto px-4 py-8 my-10">
       <div className="flex flex-col items-center mb-12 text-center">
         <h1 className="text-4xl font-bold mb-4">Latest Blog Posts</h1>
         <p className="text-gray-600 max-w-2xl">
