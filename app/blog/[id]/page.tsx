@@ -156,7 +156,7 @@ const BlogPost = () => {
               <h2 id="understanding-the-basics">Understanding the basics</h2>
               <p>
                 Next.js provides a file-system based router built on the concept
-                of pages. When a file is added to the pages directory, it's
+                of pages. When a file is added to the pages directory, it is
                 automatically available as a route.
               </p>
 

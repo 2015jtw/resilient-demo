@@ -82,18 +82,6 @@ export default async function AboutUs() {
             imageLeft={section.imageLeft}
           />
         ))}
-        {/* {Object.values(contentSections).map((section, idx) => (
-          <TwoColumnLayout
-            key={idx}
-            item={{
-              title: section.title,
-              body: section.description,
-              imageAlt: "Featured content",
-              imageSrc: section.imageSrc,
-            }}
-            imageLeft={section.imageLeft}
-          />
-        ))} */}
       </div>
     </>
   );
