@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <div className="relative isolate flex items-center justify-center h-[740px]">
+    <div className="relative isolate flex items-center justify-center h-screen">
       <Image
         src="/images/hero-section.jpg"
         alt="forest"
@@ -13,8 +13,8 @@ export default function HeroSection() {
         <div className="relative mx-auto px-10 md:px-4 max-w-5xl h-[500px]">
           <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-16 h-full">
             {/* Left Column: Mission Statement and Title */}
-            <div className="md:w-2/3 text-center md:text-left flex flex-col justify-center md:gap-y-80">
-              <h1 className="text-amber-300 text-4xl leading-10 font-bold tracking-tight sm:text-6xl">
+            <div className="md:w-2/3 text-center md:text-left flex flex-col justify-center md:gap-y-52">
+              <h1 className="text-white text-4xl leading-10 font-bold tracking-tight sm:text-6xl">
                 Resilient LLC
               </h1>
               <p className="text-amber-300 text-sm sm:text-md leading-8">
