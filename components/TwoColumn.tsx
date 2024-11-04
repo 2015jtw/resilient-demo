@@ -17,11 +17,19 @@ interface ContentItem {
 interface TwoColumnLayoutProps {
   item: ContentItem;
   imageLeft?: boolean;
+  className?: string;
 }
 
-const TwoColumnLayout = ({ item, imageLeft = false }: TwoColumnLayoutProps) => {
+const TwoColumnLayout = ({
+  item,
+  imageLeft = false,
+  className,
+}: TwoColumnLayoutProps) => {
   const descriptionContent = item.body.map((block, blockIdx) => (
-    <div key={blockIdx} className="text-lg leading-8 mb-4">
+    <div
+      key={blockIdx}
+      className="text-sm lg:text-base xl:text-lg leading-8 xl:leading-10 mb-4"
+    >
       {block.children.map((child, childIdx) => (
         <p key={childIdx}>{child.text}</p>
       ))}
@@ -29,7 +37,7 @@ const TwoColumnLayout = ({ item, imageLeft = false }: TwoColumnLayoutProps) => {
   ));
 
   const ContentSection = (
-    <div className="w-full md:w-1/2 space-y-6">
+    <div className="w-full md:w-1/2 space-y-2 lg:space-y-6 px-1 lg:px-5 xl:px-12">
       <h3 className="text-3xl font-normal">{item.title}</h3>
       <div className="space-y-4">{descriptionContent}</div>
       {item.button_text && item.button_link && (
@@ -44,26 +52,27 @@ const TwoColumnLayout = ({ item, imageLeft = false }: TwoColumnLayoutProps) => {
 
   const ImageSection = (
     <div className="w-full md:w-1/2 ">
-      <div className="md:hidden ">
-        {/* 16:9 aspect ratio on mobile */}
-        <AspectRatio ratio={16 / 9} className="bg-slate-50">
-          <Image
-            src={imageSrc}
-            alt={item.socialAltText}
-            width={800}
-            height={450}
-            className="rounded-lg object-cover w-full h-full"
-          />
-        </AspectRatio>
-      </div>
-      <div className="hidden md:block">
-        {/* 3:4 aspect ratio on larger screens */}
+      {/*  */}
+      <div className="lg:hidden">
+        {/* 3:4 aspect ratio on medium screens */}
         <AspectRatio ratio={3 / 4} className="bg-slate-50">
           <Image
             src={imageSrc}
             alt={item.socialAltText}
-            width={600}
-            height={800}
+            width={300}
+            height={400}
+            className="rounded-lg object-cover w-full h-full"
+          />
+        </AspectRatio>
+      </div>
+      <div className="hidden lg:block">
+        {/* 3:4 aspect ratio on larger screens */}
+        <AspectRatio ratio={1 / 1} className="bg-slate-50">
+          <Image
+            src={imageSrc}
+            alt={item.socialAltText}
+            width={300}
+            height={400}
             className="rounded-lg object-cover w-full h-full"
           />
         </AspectRatio>
@@ -72,7 +81,7 @@ const TwoColumnLayout = ({ item, imageLeft = false }: TwoColumnLayoutProps) => {
   );
 
   return (
-    <div className="container mx-auto px-4 md:px-0 py-12">
+    <div className={`container mx-auto px-4 md:px-0 py-12 ${className}`}>
       <div
         className={`flex flex-col md:flex-row items-center gap-8 ${
           imageLeft ? "md:flex-row-reverse" : ""
