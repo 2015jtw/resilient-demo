@@ -8,7 +8,10 @@ export default function HeroSection() {
         alt="forest"
         fill
         objectFit="cover"
+        className="absolute inset-0 z-0"
       />
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-10"></div>{" "} */}
+      {/* Gradient Overlay */}
       <div className="mx-auto max-w-4xl w-full relative">
         <div className="relative mx-auto px-10 md:px-4 max-w-5xl h-[500px]">
           <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-16 h-full">
@@ -17,7 +20,7 @@ export default function HeroSection() {
               <h1 className="text-white text-4xl leading-10 font-bold tracking-tight sm:text-6xl">
                 Resilient LLC
               </h1>
-              <p className="text-amber-300 text-sm sm:text-md leading-8">
+              <p className="text-amber-300 text-sm xl:text-base leading-8">
                 Our overarching mission is to help strengthen your capabilities.
               </p>
             </div>

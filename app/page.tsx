@@ -59,7 +59,9 @@ export default async function Home() {
               />
               <Card className="w-full max-w-md mx-auto md:hidden">
                 <CardHeader>
-                  <CardTitle className="text-center">{service.title}</CardTitle>
+                  <CardTitle className="text-center text-lg">
+                    {service.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <Image
@@ -68,8 +70,9 @@ export default async function Home() {
                     className="w-full aspect-video overflow-hidden rounded-xl object-cover object-center"
                     width={400}
                     height={225}
+                    quality={90}
                   />
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-foreground dark:text-white">
                     {service.body.map((block, index) => (
                       <Fragment key={index}>
                         {block.children.map((child, childIndex) => (
