@@ -38,3 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## NOTES on Tailwind Color Variables
 
 We are using ShadCN's green theme
+
+## BLOG REQUIREMENTS
+
+We want to use Sanity to add new blog's content and pull the document data into our blog/[id] page. We want to later be able to add comments to each blog post, ideally using Vercel Postgres database.
