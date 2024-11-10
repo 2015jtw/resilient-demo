@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaFacebook, FaLinkedin, FaMedium } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaMediumM } from "react-icons/fa";
 import { client } from "@/sanity/client";
 
 type TextChild = {
@@ -49,27 +49,27 @@ export default async function AboutSection() {
             href={about[0].socialLinks[0]}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 transition-colors"
+            className="border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
           >
-            <FaLinkedin size={24} />
+            <FaLinkedinIn className="w-6 h-6" />
             <span className="sr-only">LinkedIn</span>
           </Link>
           <Link
             href={about[0].socialLinks[1]}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 transition-colors"
+            className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
           >
-            <FaFacebook size={24} />
+            <FaFacebookF className="w-6 h-6" />
             <span className="sr-only">Facebook</span>
           </Link>
           <Link
             href={about[0].socialLinks[2]}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 transition-colors"
+            className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
           >
-            <FaMedium size={24} />
+            <FaMediumM className="w-6 h-6" />
             <span className="sr-only">Medium</span>
           </Link>
         </div>
