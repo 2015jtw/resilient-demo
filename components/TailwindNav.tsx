@@ -83,7 +83,7 @@ export default function TailwindNav() {
         <div className="flex lg:flex-1">
           <Link href="/">
             <Image
-              src="/images/resilient-logo.png"
+              src="/images/final-resilient-logo.png"
               alt="Logo"
               width={50}
               height={50}
