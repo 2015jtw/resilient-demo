@@ -42,3 +42,47 @@ We are using ShadCN's green theme
 ## BLOG REQUIREMENTS
 
 We want to use Sanity to add new blog's content and pull the document data into our blog/[id] page. We want to later be able to add comments to each blog post, ideally using Vercel Postgres database.
+
+## feat: New features or enhancements.
+
+Example: feat(header): add search bar component
+
+## fix: Bug fixes.
+
+Example: fix(button): resolve color issue on hover
+
+## docs: Documentation updates.
+
+Example: docs(readme): update project setup instructions
+
+## style: Formatting, missing semicolons, or any other changes that don’t affect the logic.
+
+Example: style(navbar): align logo and links
+
+## refactor: Code changes that neither fix a bug nor add a feature but improve readability or structure.
+
+Example: refactor(app): simplify state management
+
+## perf: Performance improvements.
+
+Example: perf(image): optimize image loading for mobile
+
+## test: Adding or updating tests.
+
+Example: test(button): add unit tests for button component
+
+## chore: Changes that don't affect the app or feature functionality but are related to maintenance tasks (e.g., configuration, dependencies).
+
+Example: chore(deps): update react to v18.1.0
+
+## build: Changes to the build process or external dependencies.
+
+Example: build: add webpack configuration for production
+
+## ci: Continuous integration updates.
+
+Example: ci(actions): update GitHub Actions workflow
+
+## revert: Reverts a previous commit.
+
+Example: revert(feat): remove the search bar feature
