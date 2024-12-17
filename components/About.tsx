@@ -34,35 +34,46 @@ export default async function AboutSection() {
         </div>
 
         <div className="flex justify-center space-x-6">
-          <Link
-            href={about[0].socialLinks[0]}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
-          >
-            <span className="w-6 h-6">
-              <FaLinkedinIn />
-            </span>
-            <span className="sr-only">LinkedIn</span>
-          </Link>
-          <Link
-            href={about[0].socialLinks[1]}
-            target="_blank"
-            rel="noopener noreferrer"
-            className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
-          >
-            <FaFacebookF className="w-6 h-6" />
-            <span className="sr-only">Facebook</span>
-          </Link>
-          <Link
-            href={about[0].socialLinks[2]}
-            target="_blank"
-            rel="noopener noreferrer"
-            className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
-          >
-            <FaMediumM className="w-6 h-6" />
-            <span className="sr-only">Medium</span>
-          </Link>
+          {about[0].socialLinks && about[0].socialLinks[0] && (
+            <Link
+              href={about[0].socialLinks[0]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
+            >
+              <span className="w-6 h-6">
+                <FaLinkedinIn />
+              </span>
+              <span className="sr-only">LinkedIn</span>
+            </Link>
+          )}
+
+          {about[0].socialLinks && about[0].socialLinks[1] && (
+            <Link
+              href={about[0].socialLinks[1]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
+            >
+              <span className="w-6 h-6">
+                <FaFacebookF />
+              </span>
+              <span className="sr-only">Facebook</span>
+            </Link>
+          )}
+          {about[0].socialLinks && about[0].socialLinks[2] && (
+            <Link
+              href={about[0].socialLinks[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
+            >
+              <span className="w-6 h-6">
+                <FaMediumM />
+              </span>
+              <span className="sr-only">Medium</span>
+            </Link>
+          )}
         </div>
       </div>
     </section>

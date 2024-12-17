@@ -5,9 +5,10 @@ import Image from "next/image";
 import { client } from "../../sanity/lib/client";
 import ClientForm from "@/components/ClientForm";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
+import { ABOUT_QUERYResult } from "@/sanity.types";
 
 export default async function AboutUs() {
-  const data = await client.fetch(ABOUT_QUERY);
+  const data: ABOUT_QUERYResult = await client.fetch(ABOUT_QUERY);
 
   return (
     <>
@@ -55,12 +56,12 @@ export default async function AboutUs() {
           <TwoColumnLayout
             key={idx}
             item={{
-              title: section.title,
+              title: section.title ?? "Default Title",
               body: section.description,
               socialAltText: "Featured content",
               image: section.imageSrc,
             }}
-            imageLeft={section.imageLeft}
+            imageLeft={section.imageLeft ?? false}
           />
         ))}
       </div>
