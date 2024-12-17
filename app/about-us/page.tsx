@@ -2,25 +2,12 @@ import { Fragment } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import TwoColumnLayout from "@/components/TwoColumn";
 import Image from "next/image";
-import { client } from "@/sanity/client";
-import { type SanityDocument } from "next-sanity";
+import { client } from "../../sanity/lib/client";
 import ClientForm from "@/components/ClientForm";
-
-const CONTENT_QUERY = `*[_type == "contentSection"]{
-  title,
-  description,
-  imageSrc,
-  imageLeft,
-}`;
-
-const options = { next: { revalidate: 30 } };
+import { ABOUT_QUERY } from "@/sanity/lib/queries";
 
 export default async function AboutUs() {
-  const contentData = await client.fetch<SanityDocument[]>(
-    CONTENT_QUERY,
-    {},
-    options
-  );
+  const data = await client.fetch(ABOUT_QUERY);
 
   return (
     <>
@@ -64,7 +51,7 @@ export default async function AboutUs() {
       </div>
 
       <div className="container mx-auto my-12 px-4 max-w-5xl py-6">
-        {contentData.map((section, idx) => (
+        {data.map((section, idx) => (
           <TwoColumnLayout
             key={idx}
             item={{

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn, FaMediumM } from "react-icons/fa";
-import { client } from "@/sanity/client";
+import { client } from "../sanity/lib/client";
+import { HOME_ABOUT_QUERY } from "@/sanity/lib/queries";
 
 type TextChild = {
   text: string;
@@ -17,16 +18,9 @@ type AboutData = {
   socialAltText: string[];
 };
 
-const ABOUT_QUERY = `*[_type == "homepageAbout"]{
-  title,
-  body,
-  socialLinks,
-  socialAltText
-}`;
-const options = { next: { revalidate: 30 } };
-
 export default async function AboutSection() {
-  const about = await client.fetch<AboutData[]>(ABOUT_QUERY, {}, options);
+  const about = await client.fetch(HOME_ABOUT_QUERY);
+  const data = about[0];
 
   return (
     <section className="py-8 md:pt-12" id="about">
@@ -34,7 +28,7 @@ export default async function AboutSection() {
         <h2 className="text-4xl text-center mb-8">{about[0].title}</h2>
 
         <div className="space-y-6 mb-8 px-8">
-          {about[0].body.map((item, idx: number) => (
+          {data.body.map((item, idx: number) => (
             <p
               className="text-foreground text-base xl:text-lg leading-8 xl:leading-10"
               key={idx}

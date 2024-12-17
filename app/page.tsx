@@ -1,11 +1,9 @@
 import AboutSection from "@/components/About";
 import HeroSection from "@/components/Hero-Section";
 import ClientForm from "@/components/ClientForm";
-import { client } from "@/sanity/client";
 import Image from "next/image";
-import { urlFor } from "@/sanity/client";
-
-import { type SanityDocument } from "next-sanity";
+import { client } from "../sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import { Fragment } from "react";
 import TwoColumnLayout from "@/components/TwoColumn";
 import { Button } from "@/components/ui/button";
@@ -16,25 +14,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-const SERVICES_QUERY = `*[_type == "homeServices"]{
-  title,
-  body,
-  image,
-  button_text,
-  button_link,
-  socialAltText
-}`;
-const options = { next: { revalidate: 30 } };
+import { SERVICES_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home() {
-  const data = await client.fetch<SanityDocument[]>(
-    SERVICES_QUERY,
-    {},
-    options
-  );
-
-  // console.log(data);
+  const data = await client.fetch(SERVICES_QUERY);
 
   return (
     <>

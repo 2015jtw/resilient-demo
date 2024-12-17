@@ -2,7 +2,7 @@ import React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { urlFor } from "@/sanity/client";
+import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 
 interface ContentItem {

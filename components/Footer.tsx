@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn, FaMediumM } from "react-icons/fa";
-import { client } from "@/sanity/client";
+import { client } from "../sanity/lib/client";
 
 type AboutData = {
   socialLinks: string[];
