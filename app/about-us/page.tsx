@@ -4,7 +4,6 @@ import TwoColumnLayout from "@/components/TwoColumn";
 import Image from "next/image";
 import { client } from "@/sanity/client";
 import { type SanityDocument } from "next-sanity";
-import { urlFor } from "@/sanity/client";
 import ClientForm from "@/components/ClientForm";
 
 const CONTENT_QUERY = `*[_type == "contentSection"]{
@@ -13,11 +12,7 @@ const CONTENT_QUERY = `*[_type == "contentSection"]{
   imageSrc,
   imageLeft,
 }`;
-const HERO_QUERY = `*[_type == "heroSection"]{
-  title,
-  description,
-  backgroundImageUrl,
-}`;
+
 const options = { next: { revalidate: 30 } };
 
 export default async function AboutUs() {
@@ -27,18 +22,12 @@ export default async function AboutUs() {
     options
   );
 
-  const heroData = await client.fetch<SanityDocument[]>(
-    HERO_QUERY,
-    {},
-    options
-  );
-
   return (
     <>
       <div className="relative min-h-screen flex items-center justify-center pt-16 p-4 overflow-hidden">
         {/* Background Image */}
         <Image
-          src={urlFor(heroData[0].backgroundImageUrl).url()}
+          src="/images/assessments.jpeg"
           alt="Background image"
           layout="fill"
           objectFit="cover"
@@ -52,20 +41,24 @@ export default async function AboutUs() {
         <Card className="relative max-w-xs sm:max-w-sm md:max-w-lg w-full bg-white shadow-xl my-16 md:my-12 p-6">
           <CardHeader className="px-0 py-4">
             <CardTitle className="text-center text-xl">
-              {heroData[0].title}
+              Getting started is the hardest part
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 px-0 pb-0">
-            {heroData[0].description.map((paragraph: string, index: number) => (
-              <p
-                key={index}
-                className={`font-medium leading-8 ${
-                  index === 0 ? "italic" : ""
-                }`}
-              >
-                {paragraph}
-              </p>
-            ))}
+          <CardContent className="space-y-4 px-0 pb-0 font-medium leading-8">
+            <p className="italic">
+              The most successful people don&apos;t look back to see who&apos;s
+              watching. Look for opportunities to lift others up along the way.
+            </p>
+            <p>
+              Resilient, LLC maintains a network of subject matter experts
+              across a wide spectrum of domains related to crises. We strive to
+              provide appropriate recommendations for the resources that may be
+              required in better preparing your organization, regardless of the
+              current environment, whether that be blue skies or in the midst of
+              a hurricane. We invite you to explore this site to gain our
+              perspectives on the crisis leadership landscape and how we might
+              guide you through the improvement process.
+            </p>
           </CardContent>
         </Card>
       </div>
