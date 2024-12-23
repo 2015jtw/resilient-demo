@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import TwoColumnLayout from "@/components/TwoColumn";
 import Image from "next/image";
-import { client } from "../../sanity/lib/client";
 import ClientForm from "@/components/ClientForm";
+import { client } from "../../sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { ABOUT_QUERYResult } from "@/sanity.types";
 

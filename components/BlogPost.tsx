@@ -139,18 +139,6 @@ const BlogPost = ({ post }: { post: Post }) => {
                 system. Next.js requires Node.js 12.22.0 or later.
               </p>
 
-              <div className="not-prose my-8">
-                <Card className="bg-blue-50">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold mb-2">Pro Tip</h3>
-                    <p className="text-gray-700">
-                      Use the create-next-app command to automatically set up a
-                      new Next.js project with all the defaults.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-
               <h2 id="understanding-the-basics">Understanding the basics</h2>
               <p>
                 Next.js provides a file-system based router built on the concept

@@ -186,6 +186,7 @@ export type Post = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  readTime?: number;
   author?: {
     _ref: string;
     _type: "reference";
@@ -193,6 +194,18 @@ export type Post = {
     [internalGroqTypeReferenceTo]?: "author";
   };
   mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  secondaryImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -212,7 +225,37 @@ export type Post = {
     [internalGroqTypeReferenceTo]?: "category";
   }>;
   publishedAt?: string;
-  body?: Array<{
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  main_content?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -251,7 +294,7 @@ export type Author = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
+  role?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -263,24 +306,12 @@ export type Author = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  bio?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type Category = {
@@ -290,14 +321,6 @@ export type Category = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  slug?: Slug;
-  description?: string;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
 };
 
 export type BlockContent = Array<{
@@ -388,7 +411,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | AboutPage | HomepageAbout | HomeServices | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | AboutPage | HomepageAbout | HomeServices | Post | Author | Slug | Category | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: SERVICES_QUERY
@@ -492,6 +515,57 @@ export type ABOUT_QUERYResult = Array<{
     _type: "image";
   } | null;
 }>;
+// Variable: BLOG_INDEX_QUERY
+// Query: *[_type == "post"]{ _id, title, mainImage, publishedAt, readTime, intro, slug }
+export type BLOG_INDEX_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  publishedAt: string | null;
+  readTime: number | null;
+  intro: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  slug: Slug | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -500,5 +574,6 @@ declare module "@sanity/client" {
     "*[_type == \"homeServices\"]{ _id, title, body, button_text, button_link, image, socialAltText }\n": SERVICES_QUERYResult;
     "*[_type == \"homepageAbout\"]{ _id, title, body, socialAltText, socialLinks }\n": HOME_ABOUT_QUERYResult;
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
+    "*[_type == \"post\"]{ _id, title, mainImage, publishedAt, readTime, intro, slug }": BLOG_INDEX_QUERYResult;
   }
 }
