@@ -5,50 +5,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
 
-const TableOfContents = ({
-  items,
-  className,
-}: {
-  items: string[];
-  className?: string;
-}) => (
-  <Card className={className}>
-    <CardContent className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Table of Contents</h2>
-      <nav>
-        <ul className="space-y-2">
-          {items.map((item, index) => (
-            <li key={index}>
-              <a
-                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </CardContent>
-  </Card>
-);
-
-interface Post {
-  heroImage: string;
-  title: string;
-  category: string;
-  publishedAt: string;
-  readTime: string;
-  author: {
-    avatar: string;
-    name: string;
-    role: string;
-  };
-  content: string;
-  tableOfContents: string[];
-}
-
-const BlogPost = ({ post }: { post: Post }) => {
+const BlogPost = ({ post }) => {
   return (
     <article className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -119,9 +76,6 @@ const BlogPost = ({ post }: { post: Post }) => {
               </div>
 
               {/* Mobile Table of Contents */}
-              <div className="lg:hidden mb-8 not-prose">
-                <TableOfContents items={post.tableOfContents} />
-              </div>
 
               {/* Rest of the Content */}
               <h2 id="introduction-to-nextjs">Introduction to Next.js</h2>
@@ -156,12 +110,6 @@ const BlogPost = ({ post }: { post: Post }) => {
 
             {/* Desktop Sidebar */}
             <aside className="space-y-8">
-              {/* Table of Contents */}
-              <TableOfContents
-                items={post.tableOfContents}
-                className="hidden lg:block"
-              />
-
               {/* Share Card */}
               <Card>
                 <CardContent className="p-6">

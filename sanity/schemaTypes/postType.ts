@@ -37,7 +37,7 @@ export const postType = defineType({
         {
           name: "alt",
           type: "string",
-          title: "Alternative text",
+          title: "Text describing the image",
         },
       ],
     }),

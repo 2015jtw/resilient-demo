@@ -12,6 +12,8 @@ export const ABOUT_QUERY =
   defineQuery(`*[_type == "aboutPage"]{ _id, title, description, imageLeft, imageSrc }
 `);
 
-export const BLOG_INDEX_QUERY = defineQuery(
-  `*[_type == "post"]{ _id, title, mainImage, publishedAt, readTime, intro, slug }`
-);
+export const BLOG_INDEX_QUERY =
+  defineQuery(`*[_type == "post"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }
+`);
+
+export const BLOG_POST_QUERY = defineQuery(`*[_type == "post"]`);
