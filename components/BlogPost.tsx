@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
 
-const BlogPost = ({ post }) => {
+const BlogPost = (post) => {
   return (
     <article className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -56,16 +56,16 @@ const BlogPost = ({ post }) => {
               {/* Author Card */}
               <Card className="mb-8 not-prose">
                 <CardContent className="flex items-center gap-4 p-6">
-                  <img
+                  {/* TODO: Create IMG for Author Schema */}
+                  {/* <img
                     src={post.author.avatar}
                     alt={post.author.name}
                     className="w-16 h-16 rounded-full"
-                  />
+                  /> */}
                   <div>
-                    <h3 className="font-semibold text-lg">
-                      {post.author.name}
-                    </h3>
-                    <p className="text-gray-600">{post.author.role}</p>
+                    {/* TODO: Add type safety to post --> needs to be in query */}
+                    <h3 className="font-semibold text-lg">AUTHOR NAME</h3>
+                    <p className="text-gray-600">{post.author?.role}</p>
                   </div>
                 </CardContent>
               </Card>
