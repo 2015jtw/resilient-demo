@@ -16,43 +16,6 @@ import { BLOG_INDEX_QUERY } from "@/sanity/lib/queries";
 import { BLOG_INDEX_QUERYResult } from "@/sanity.types";
 import { PortableText } from "next-sanity";
 
-// This would typically come from Sanity
-// const posts = [
-//   {
-//     id: "1",
-//     title: "Getting Started with Next.js and Tailwind CSS",
-//     excerpt:
-//       "Learn how to build modern, responsive web applications using Next.js and Tailwind CSS. We'll cover setup, configuration, and best practices for creating beautiful user interfaces.",
-//     date: "2024-10-27",
-//     readTime: "5 min",
-//     category: "Development",
-//     imageUrl: "/api/placeholder/800/400",
-//     slug: "getting-started-with-nextjs",
-//   },
-//   {
-//     id: "2",
-//     title: "Mastering Content Management with Sanity",
-//     excerpt:
-//       "Discover how to leverage Sanity's powerful features to create a flexible and scalable content management system for your web applications.",
-//     date: "2024-10-26",
-//     readTime: "8 min",
-//     category: "CMS",
-//     imageUrl: "/api/placeholder/800/400",
-//     slug: "mastering-sanity",
-//   },
-//   {
-//     id: "3",
-//     title: "Building Beautiful UIs with shadcn/ui",
-//     excerpt:
-//       "Explore the comprehensive component library of shadcn/ui and learn how to create consistent, accessible, and beautiful user interfaces.",
-//     date: "2024-10-25",
-//     readTime: "6 min",
-//     category: "Design",
-//     imageUrl: "/api/placeholder/800/400",
-//     slug: "building-with-shadcn",
-//   },
-// ];
-
 export default async function BlogIndex() {
   const posts: BLOG_INDEX_QUERYResult = await client.fetch(BLOG_INDEX_QUERY);
   console.log("posts ", posts);
