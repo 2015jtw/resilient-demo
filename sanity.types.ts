@@ -560,7 +560,7 @@ export type BLOG_INDEX_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: SINGLE_BLOG_POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, image} }
+// Query: *[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }
 export type SINGLE_BLOG_POST_QUERYResult = {
   _id: string;
   title: string | null;
@@ -644,6 +644,7 @@ export type SINGLE_BLOG_POST_QUERYResult = {
   }> | null;
   author: {
     name: string | null;
+    role: string | null;
     image: {
       asset?: {
         _ref: string;
@@ -666,6 +667,6 @@ declare module "@sanity/client" {
     "*[_type == \"homepageAbout\"]{ _id, title, body, socialAltText, socialLinks }\n": HOME_ABOUT_QUERYResult;
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
     "*[_type == \"post\"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }\n": BLOG_INDEX_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, image} }\n": SINGLE_BLOG_POST_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }\n": SINGLE_BLOG_POST_QUERYResult;
   }
 }

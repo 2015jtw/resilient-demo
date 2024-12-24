@@ -17,5 +17,5 @@ export const BLOG_INDEX_QUERY =
 `);
 
 export const SINGLE_BLOG_POST_QUERY =
-  defineQuery(`*[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, image} }
+  defineQuery(`*[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }
 `);

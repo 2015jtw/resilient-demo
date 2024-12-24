@@ -11,6 +11,7 @@ import { Calendar, Clock, ArrowLeft } from "lucide-react";
 // sanity
 import { urlFor } from "@/sanity/lib/image";
 import { SINGLE_BLOG_POST_QUERYResult } from "@/sanity.types";
+import { PortableText } from "next-sanity";
 
 const BlogPost = ({ post }: { post: SINGLE_BLOG_POST_QUERYResult }) => {
   console.log("blog post", post);
@@ -34,26 +35,34 @@ const BlogPost = ({ post }: { post: SINGLE_BLOG_POST_QUERYResult }) => {
                   post.categories?.map((category) => category.title).join(", ")}
               </Badge>
               <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                {post.title}
+                {post && post.title}
               </h1>
               <div className="flex items-center gap-6 text-gray-200">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  <span>{post.publishedAt}</span>
+                  <span>
+                    {post && post.publishedAt
+                      ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })
+                      : "Unknown date"}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>{post.readTime} minute read</span>
+                  <span>{post && post.readTime} minute read</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-8 md:py-12">
+        <div className="container mx-auto p-4 md:py-12">
           <div className="max-w-4xl mx-auto">
             {/* Navigation */}
-            <div className="mb-8">
+            <div className="mb-4">
               <Link href="/blog" className="gap-2">
                 <Button variant="ghost" className="gap-2">
                   <ArrowLeft className="w-4 h-4" />
@@ -64,27 +73,87 @@ const BlogPost = ({ post }: { post: SINGLE_BLOG_POST_QUERYResult }) => {
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12">
               {/* Main Content */}
-              <div className="prose prose-lg max-w-none">
+              <div className="max-w-none">
                 {/* Author Card */}
-                <Card className="mb-8 not-prose">
+                <Card className="mb-8">
                   <CardContent className="flex items-center gap-4 p-6">
                     {/* TODO: Create IMG for Author Schema */}
-                    {/* <img
-                      src={post.author.avatar}
-                      alt={post.author.name}
+                    <Image
+                      src={
+                        post?.author?.image
+                          ? urlFor(post.author.image).url()
+                          : ""
+                      }
+                      alt={post?.author?.name || "Author"}
                       className="w-16 h-16 rounded-full"
-                    /> */}
+                      width={64}
+                      height={64}
+                    />
                     <div>
                       {/* TODO: Add type safety to post --> needs to be in query */}
-                      <h3 className="font-semibold text-lg">AUTHOR NAME</h3>
-                      <p className="text-gray-600">{post.author?.role}</p>
+                      <h4 className="font-semibold text-lg">
+                        {post?.author?.name}
+                      </h4>
+                      <p className="text-gray-600">{post?.author?.role}</p>
                     </div>
                   </CardContent>
                 </Card>
-
-                {/* MAIN CONTENT */}
               </div>
+              {/* FUTURE TODO: This is where the Share button will live */}
             </div>
+            {/* INTRO */}
+            {post?.intro && (
+              <div className="mb-6">
+                <h2 className="font-semibold text-xl mb-2">Summary</h2>
+                <PortableText
+                  value={post?.intro || []}
+                  components={{
+                    block: {
+                      normal: ({ children }) => (
+                        <p className="italic">{children}</p>
+                      ),
+                    },
+                  }}
+                />
+              </div>
+            )}
+
+            {/* MAIN CONTENT */}
+            {post?.main_content && (
+              <div>
+                <PortableText
+                  value={post?.main_content || []}
+                  components={{
+                    block: {
+                      normal: ({ children }) => <p>{children}</p>,
+                      h3: ({ children }) => (
+                        <h3 className="text-xl font-semibold mt-6 mb-2">
+                          {children}
+                        </h3>
+                      ),
+                      blockquote: ({ children }) => (
+                        <blockquote className="border-l-4 border-blue-500 pl-4 italic my-4 text-gray-600">
+                          {children}
+                        </blockquote>
+                      ),
+                    },
+                    types: {
+                      image: ({ value }) => (
+                        <div className="my-6">
+                          <Image
+                            src={urlFor(value).url()}
+                            alt={value?.alt || "Image"}
+                            className="w-full h-auto rounded-lg shadow-md"
+                            width={600}
+                            height={400}
+                          />
+                        </div>
+                      ),
+                    },
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
