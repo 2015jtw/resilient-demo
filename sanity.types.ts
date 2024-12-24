@@ -205,18 +205,6 @@ export type Post = {
     alt?: string;
     _type: "image";
   };
-  secondaryImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
   categories?: Array<{
     _ref: string;
     _type: "reference";
@@ -571,24 +559,12 @@ export type BLOG_INDEX_QUERYResult = Array<{
     name: string | null;
   } | null;
 }>;
-// Variable: BLOG_POST_QUERY
-// Query: *[_type == "post"]
-export type BLOG_POST_QUERYResult = Array<{
+// Variable: SINGLE_BLOG_POST_QUERY
+// Query: *[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, image} }
+export type SINGLE_BLOG_POST_QUERYResult = {
   _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  readTime?: number;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
-  mainImage?: {
+  title: string | null;
+  mainImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -599,28 +575,9 @@ export type BLOG_POST_QUERYResult = Array<{
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  };
-  secondaryImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  publishedAt?: string;
-  intro?: Array<{
+  } | null;
+  publishedAt: string | null;
+  intro: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -649,8 +606,9 @@ export type BLOG_POST_QUERYResult = Array<{
     alt?: string;
     _type: "image";
     _key: string;
-  }>;
-  main_content?: Array<{
+  }> | null;
+  readTime: number | null;
+  main_content: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -679,8 +637,26 @@ export type BLOG_POST_QUERYResult = Array<{
     alt?: string;
     _type: "image";
     _key: string;
-  }>;
-}>;
+  }> | null;
+  slug: Slug | null;
+  categories: Array<{
+    title: string | null;
+  }> | null;
+  author: {
+    name: string | null;
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+  } | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -690,6 +666,6 @@ declare module "@sanity/client" {
     "*[_type == \"homepageAbout\"]{ _id, title, body, socialAltText, socialLinks }\n": HOME_ABOUT_QUERYResult;
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
     "*[_type == \"post\"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }\n": BLOG_INDEX_QUERYResult;
-    "*[_type == \"post\"]": BLOG_POST_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, image} }\n": SINGLE_BLOG_POST_QUERYResult;
   }
 }

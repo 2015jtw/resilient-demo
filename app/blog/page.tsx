@@ -55,16 +55,6 @@ export default async function BlogIndex() {
             </div>
 
             <CardHeader className="flex-grow">
-              {/* <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  <span>{post.publishedAt}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  <span>Approximately {post.readTime} minutes</span>
-                </div>
-              </div> */}
               <div className="flex items-center gap-4 text-sm text-gray-600 mb-2 flex-wrap">
                 {post.author?.name && (
                   <div className="flex items-center gap-1">

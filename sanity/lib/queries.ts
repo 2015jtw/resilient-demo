@@ -16,4 +16,6 @@ export const BLOG_INDEX_QUERY =
   defineQuery(`*[_type == "post"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }
 `);
 
-export const BLOG_POST_QUERY = defineQuery(`*[_type == "post"]`);
+export const SINGLE_BLOG_POST_QUERY =
+  defineQuery(`*[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, image} }
+`);
