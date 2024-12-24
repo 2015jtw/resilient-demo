@@ -4,7 +4,7 @@ import Fragment from "react";
 
 // UI
 import { Button } from "@/components/ui/button";
-
+import Link from "next/link";
 // Sanity
 import { SINGLE_SERVICE_PAGE_QUERYResult } from "@/sanity.types";
 import { urlFor } from "@/sanity/lib/image";
@@ -102,7 +102,7 @@ const ServiceHero = ({
           <div className="mx-auto max-w-3xl py-8 px-6 lg:px-0">
             <h2 className="text-3xl font-medium pb-4">Why Choose Us</h2>
             <PortableText
-              value={service?.keyElements || []}
+              value={service?.chooseUs || []}
               components={{
                 block: {
                   normal: ({ children }) => (
@@ -112,9 +112,13 @@ const ServiceHero = ({
               }}
             />
             <p className="italic">{service && service.hook}</p>
-            <Button variant={"secondary"} className="my-4">
-              <a className="underline-offset-4 hover:underline">Get Started</a>
-            </Button>
+            <Link href="/#contact-form" passHref>
+              <Button variant={"secondary"} className="my-4">
+                <a className="underline-offset-4 hover:underline">
+                  Get Started
+                </a>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
