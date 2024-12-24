@@ -14,8 +14,6 @@ import { SINGLE_BLOG_POST_QUERYResult } from "@/sanity.types";
 import { PortableText } from "next-sanity";
 
 const BlogPost = ({ post }: { post: SINGLE_BLOG_POST_QUERYResult }) => {
-  console.log("blog post", post);
-
   return (
     <article className="min-h-screen bg-gray-50">
       <div key={post?._id}>

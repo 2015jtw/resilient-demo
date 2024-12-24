@@ -1,10 +1,11 @@
+// next/react
+import Image from "next/image";
+import { Fragment } from "react";
+
+// UI
 import AboutSection from "@/components/About";
 import HeroSection from "@/components/Hero-Section";
 import ClientForm from "@/components/ClientForm";
-import Image from "next/image";
-import { client } from "../sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
-import { Fragment } from "react";
 import TwoColumnLayout from "@/components/TwoColumn";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+// Sanity
 import { SERVICES_QUERY } from "@/sanity/lib/queries";
+import { client } from "../sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 export default async function Home() {
   const data = await client.fetch(SERVICES_QUERY);
@@ -32,11 +37,11 @@ export default async function Home() {
                 <TwoColumnLayout
                   className="hidden md:block"
                   item={{
-                    title: service.title ?? "Default Title",
+                    title: service.title ?? "Service",
                     body: service.body,
-                    button_text: service.button_text ?? "Default Button Text",
+                    button_text: service.button_text ?? "Learn More",
                     button_link: service.button_link ?? "#",
-                    socialAltText: service.socialAltText ?? "Default Alt Text",
+                    socialAltText: service.socialAltText ?? "Image of Service",
                     image: service.image,
                   }}
                   imageLeft={idx % 2 === 0}
