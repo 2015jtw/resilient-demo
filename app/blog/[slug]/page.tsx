@@ -16,6 +16,5 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     SINGLE_BLOG_POST_QUERY,
     { slug }
   );
-
   return <BlogPost post={post} />;
 }

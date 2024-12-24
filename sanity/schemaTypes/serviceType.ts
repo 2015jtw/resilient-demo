@@ -10,6 +10,13 @@ export const ServiceType = defineType({
       type: "string",
     }),
     defineField({
+      name: "slug",
+      type: "slug",
+      options: {
+        source: "title",
+      },
+    }),
+    defineField({
       name: "heroText",
       type: "string",
     }),

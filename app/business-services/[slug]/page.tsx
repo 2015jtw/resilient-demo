@@ -24,6 +24,7 @@ export default async function ServiceTemplate({
     { slug }
   );
 
+  console.log("Fetched service:", service); // Add a console log to check the fetched data
   return (
     <div>
       <ServiceHero service={service} />

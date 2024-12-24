@@ -75,6 +75,7 @@ export type Service = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  slug?: Slug;
   heroText?: string;
   intro?: string;
   approach?: Array<{
@@ -773,7 +774,7 @@ export type SINGLE_BLOG_POST_QUERYResult = {
   } | null;
 } | null;
 // Variable: SERVICE_PAGE_QUERY
-// Query: *[_type == "service"]{_id, heroImage, title, heroText, intro, approach, keyElements, chooseUs, hook}
+// Query: *[_type == "service"]{_id, heroImage, title, heroText, intro, slug, approach, keyElements, chooseUs, hook}
 export type SERVICE_PAGE_QUERYResult = Array<{
   _id: string;
   heroImage: {
@@ -791,6 +792,7 @@ export type SERVICE_PAGE_QUERYResult = Array<{
   title: string | null;
   heroText: string | null;
   intro: string | null;
+  slug: Slug | null;
   approach: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -884,7 +886,7 @@ export type SERVICE_PAGE_QUERYResult = Array<{
   hook: string | null;
 }>;
 // Variable: SINGLE_SERVICE_PAGE_QUERY
-// Query: *[_type == "service" && slug.current == $slug][0]{_id, heroImage, title, heroText, intro, approach, keyElements, chooseUs, hook}
+// Query: *[_type == "service" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}
 export type SINGLE_SERVICE_PAGE_QUERYResult = {
   _id: string;
   heroImage: {
@@ -899,6 +901,7 @@ export type SINGLE_SERVICE_PAGE_QUERYResult = {
     alt?: string;
     _type: "image";
   } | null;
+  slug: Slug | null;
   title: string | null;
   heroText: string | null;
   intro: string | null;
@@ -1004,7 +1007,7 @@ declare module "@sanity/client" {
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
     "*[_type == \"post\"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }\n": BLOG_INDEX_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }\n": SINGLE_BLOG_POST_QUERYResult;
-    "*[_type == \"service\"]{_id, heroImage, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SERVICE_PAGE_QUERYResult;
-    "*[_type == \"service\" && slug.current == $slug][0]{_id, heroImage, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SINGLE_SERVICE_PAGE_QUERYResult;
+    "*[_type == \"service\"]{_id, heroImage, title, heroText, intro, slug, approach, keyElements, chooseUs, hook}\n": SERVICE_PAGE_QUERYResult;
+    "*[_type == \"service\" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SINGLE_SERVICE_PAGE_QUERYResult;
   }
 }

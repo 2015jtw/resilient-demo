@@ -32,33 +32,39 @@ import { Button } from "./ui/button";
 
 const services = [
   {
+    name: "Crisis Response",
+    description: "We empower leaders to be well-prepared",
+    href: "/business-services/crisis-response",
+    icon: ChartPieIcon,
+  },
+  {
     name: "Crisis Leadership",
     description: "We empower leaders to be well-prepared",
-    href: "/services/crisisleadership",
+    href: "/business-services/crisis-leadership",
     icon: ChartPieIcon,
   },
   {
     name: "Crisis Communication",
     description: "Communicating effectively is crucial in a crisis",
-    href: "/services/crisisleadership",
+    href: "/business-services/crisis-leadership",
     icon: CursorArrowRaysIcon,
   },
   {
     name: "Risk Management",
     description: "The storm has arrived…",
-    href: "/services/riskmanagement",
+    href: "/business-services/risk-management",
     icon: FingerPrintIcon,
   },
   {
     name: "Business Continuity",
     description: "Maintain key functionality in disruptive environments",
-    href: "/services/businesscontinuity",
+    href: "/business-services/business-continuity",
     icon: SquaresPlusIcon,
   },
   {
     name: "Assessments",
     description: "Provide senior leadership and boards with strategic plans",
-    href: "/services/assessments",
+    href: "/business-services/assessments",
     icon: ArrowPathIcon,
   },
 ];
