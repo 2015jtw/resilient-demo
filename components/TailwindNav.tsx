@@ -1,6 +1,12 @@
 "use client";
 
+// React/NextJS
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+// UI Components
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogPanel,
@@ -13,58 +19,11 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from "@headlessui/react";
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "./ui/button";
 
-const services = [
-  {
-    name: "Crisis Response",
-    description: "We empower leaders to be well-prepared",
-    href: "/business-services/crisis-response",
-    icon: ChartPieIcon,
-  },
-  {
-    name: "Crisis Leadership",
-    description: "We empower leaders to be well-prepared",
-    href: "/business-services/crisis-leadership",
-    icon: ChartPieIcon,
-  },
-  {
-    name: "Crisis Communication",
-    description: "Communicating effectively is crucial in a crisis",
-    href: "/business-services/crisis-communication",
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: "Risk Management",
-    description: "The storm has arrived…",
-    href: "/business-services/risk-management",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "Business Continuity",
-    description: "Maintain key functionality in disruptive environments",
-    href: "/business-services/business-continuity",
-    icon: SquaresPlusIcon,
-  },
-  {
-    name: "Assessments",
-    description: "Provide senior leadership and boards with strategic plans",
-    href: "/business-services/assessments",
-    icon: ArrowPathIcon,
-  },
-];
+// Services Data
+import servicesHardCoded from "@/lib/data";
 
 export default function TailwindNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -115,13 +74,12 @@ export default function TailwindNav() {
                   />
                 </PopoverButton>
 
-                {/* OG Popover Panel   */}
                 <PopoverPanel
                   transition
                   className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                 >
                   <div className="p-4">
-                    {services.map((item) => (
+                    {servicesHardCoded.map((item) => (
                       <div
                         key={item.name}
                         className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -211,7 +169,7 @@ export default function TailwindNav() {
                     />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...services].map((item) => (
+                    {[...servicesHardCoded].map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"

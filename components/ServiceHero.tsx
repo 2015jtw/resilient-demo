@@ -15,7 +15,6 @@ const ServiceHero = ({
 }: {
   service: SINGLE_SERVICE_PAGE_QUERYResult;
 }) => {
-  console.log("service", service);
   return (
     <>
       {/* Image Section */}

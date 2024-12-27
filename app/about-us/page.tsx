@@ -1,8 +1,13 @@
+// React/NextJS
 import { Fragment } from "react";
+import Image from "next/image";
+
+// UI
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import TwoColumnLayout from "@/components/TwoColumn";
-import Image from "next/image";
 import ClientForm from "@/components/ClientForm";
+
+// Sanity
 import { client } from "../../sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { ABOUT_QUERYResult } from "@/sanity.types";
@@ -57,9 +62,16 @@ export default async function AboutUs() {
             key={idx}
             item={{
               title: section.title ?? "Default Title",
-              body: section.description,
+              body: section.description?.map((desc) => ({
+                children: desc.children?.map((child) => ({
+                  text: child.text ?? "Default Description",
+                })) ?? [{ text: "Default Description" }],
+              })) ?? [{ children: [{ text: "Default Description" }] }],
               socialAltText: "Featured content",
-              image: section.imageSrc,
+              image:
+                section.imageSrc && section.imageSrc.asset
+                  ? { asset: { _ref: section.imageSrc.asset._ref } }
+                  : { asset: { _ref: "default_ref" } },
             }}
             imageLeft={section.imageLeft ?? false}
           />

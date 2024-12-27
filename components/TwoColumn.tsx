@@ -7,11 +7,11 @@ import Link from "next/link";
 
 interface ContentItem {
   title: string;
-  body: { children: { text: string }[] }[]; // Adjusted to match your data structure
+  body: { children: { text: string }[] }[];
   button_text?: string;
   button_link?: string;
   socialAltText: string;
-  image: { asset: { _ref: string } }; // Assuming the image structure you shared
+  image: { asset: { _ref: string } };
 }
 
 interface TwoColumnLayoutProps {

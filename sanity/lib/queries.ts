@@ -27,7 +27,3 @@ export const SERVICE_PAGE_QUERY =
 export const SINGLE_SERVICE_PAGE_QUERY =
   defineQuery(`*[_type == "service" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}
 `);
-
-export const SERVICE_NAV_QUERY =
-  defineQuery(`*[_type == "service"]{_id, title, slug}
-`);

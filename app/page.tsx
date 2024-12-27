@@ -38,11 +38,20 @@ export default async function Home() {
                   className="hidden md:block"
                   item={{
                     title: service.title ?? "Service",
-                    body: service.body,
+                    body:
+                      service.body?.map((block) => ({
+                        children:
+                          block.children?.map((child) => ({
+                            text: child.text ?? "",
+                          })) ?? [],
+                      })) ?? [],
                     button_text: service.button_text ?? "Learn More",
                     button_link: service.button_link ?? "#",
                     socialAltText: service.socialAltText ?? "Image of Service",
-                    image: service.image,
+                    image:
+                      service.image && service.image.asset
+                        ? { asset: { _ref: service.image.asset._ref } }
+                        : { asset: { _ref: "" } },
                   }}
                   imageLeft={idx % 2 === 0}
                 />
@@ -54,7 +63,7 @@ export default async function Home() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <Image
-                      src={urlFor(service.image).url()}
+                      src={service.image ? urlFor(service.image).url() : ""}
                       alt={service.socialAltText ?? "Default Alt Text"}
                       className="w-full aspect-video overflow-hidden rounded-xl object-cover object-center"
                       width={400}
