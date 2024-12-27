@@ -20,7 +20,6 @@ import { urlFor } from "@/sanity/lib/image";
 
 export default async function BlogIndex() {
   const posts: BLOG_INDEX_QUERYResult = await client.fetch(BLOG_INDEX_QUERY);
-  console.log("posts ", posts);
   return (
     <div className="container mx-auto px-4 py-8 my-10">
       <div className="flex flex-col items-center mb-12 text-center">
