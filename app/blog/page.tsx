@@ -25,7 +25,7 @@ export default async function BlogIndex() {
       <div className="bg-white bg-dot-black/[0.2] relative">
         {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
-        <div className="container mx-auto px-4 py-12 my-2">
+        <div className="container mx-auto px-4 py-12 pb-20 my-2">
           <div className="flex flex-col items-center mb-12 text-center">
             <h1 className="text-4xl font-bold mb-4">Blog</h1>
             <p className="text-gray-600 max-w-2xl">
@@ -34,7 +34,7 @@ export default async function BlogIndex() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 bg-white">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 ">
             {posts.map((post) => (
               <Card
                 key={post._id}
