@@ -59,7 +59,7 @@ const ClientForm = () => {
                 render={({ field }) => {
                   return (
                     <FormItem className="flex-1">
-                      <FormLabel>John</FormLabel>
+                      <FormLabel>First Name</FormLabel>
                       <FormControl>
                         <Input {...field} placeholder="John" type="text" />
                       </FormControl>
