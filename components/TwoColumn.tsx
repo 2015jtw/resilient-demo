@@ -18,12 +18,14 @@ interface TwoColumnLayoutProps {
   item: ContentItem;
   imageLeft?: boolean;
   className?: string;
+  longImageOnDesktop?: boolean;
 }
 
 const TwoColumnLayout = ({
   item,
   imageLeft = false,
   className,
+  longImageOnDesktop = false,
 }: TwoColumnLayoutProps) => {
   const descriptionContent = item.body.map((block, blockIdx) => (
     <div
@@ -48,12 +50,23 @@ const TwoColumnLayout = ({
     </div>
   );
 
-  const imageSrc = urlFor(item.image.asset._ref).url(); // Use the image builder
+  const imageSrc = urlFor(item.image.asset._ref).url();
 
   const ImageSection = (
-    <div className="w-full md:w-1/2 ">
-      {/*  */}
-      <div className="lg:hidden">
+    <div className="w-full md:w-1/2">
+      <div className="md:hidden">
+        {/* 16:9 aspect ratio on mobile screens */}
+        <AspectRatio ratio={16 / 9} className="bg-slate-50">
+          <Image
+            src={imageSrc}
+            alt={item.socialAltText}
+            width={640}
+            height={360}
+            className="rounded-lg object-cover w-full h-full"
+          />
+        </AspectRatio>
+      </div>
+      <div className="hidden md:block lg:hidden">
         {/* 3:4 aspect ratio on medium screens */}
         <AspectRatio ratio={3 / 4} className="bg-slate-50">
           <Image
@@ -66,13 +79,16 @@ const TwoColumnLayout = ({
         </AspectRatio>
       </div>
       <div className="hidden lg:block">
-        {/* 3:4 aspect ratio on larger screens */}
-        <AspectRatio ratio={1 / 1} className="bg-slate-50">
+        {/* Use 3:4 or 2:3 aspect ratio on larger screens based on longImageOnDesktop prop */}
+        <AspectRatio
+          ratio={longImageOnDesktop ? 2 / 3 : 1 / 1}
+          className="bg-slate-50"
+        >
           <Image
             src={imageSrc}
             alt={item.socialAltText}
             width={300}
-            height={400}
+            height={longImageOnDesktop ? 450 : 300}
             className="rounded-lg object-cover w-full h-full"
           />
         </AspectRatio>

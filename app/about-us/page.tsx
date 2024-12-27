@@ -74,6 +74,7 @@ export default async function AboutUs() {
                   : { asset: { _ref: "default_ref" } },
             }}
             imageLeft={section.imageLeft ?? false}
+            longImageOnDesktop={true}
           />
         ))}
       </div>
