@@ -93,7 +93,7 @@ export default async function Home() {
             ))}
         </div>
 
-        {await AboutSection()}
+        <AboutSection />
         <ClientForm />
       </div>
     </>

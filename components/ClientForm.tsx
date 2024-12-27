@@ -45,7 +45,10 @@ const ClientForm = () => {
 
   return (
     <Form {...form}>
-      <div className="bg-background container mx-auto px-4" id="contact-form">
+      <div
+        className="bg-background container mx-auto px-4 pb-8"
+        id="contact-form"
+      >
         {!isSubmitted ? (
           <form
             onSubmit={form.handleSubmit(onSubmit)}

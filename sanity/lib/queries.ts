@@ -12,6 +12,10 @@ export const ABOUT_QUERY =
   defineQuery(`*[_type == "aboutPage"]{ _id, title, description, imageLeft, imageSrc }
 `);
 
+export const FOOTER_QUERY =
+  defineQuery(`*[_type == "homepageAbout"]{socialLinks, socialAltText}
+`);
+
 export const BLOG_INDEX_QUERY =
   defineQuery(`*[_type == "post"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }
 `);

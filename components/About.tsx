@@ -5,9 +5,23 @@ import { HOME_ABOUT_QUERY } from "@/sanity/lib/queries";
 import { HOME_ABOUT_QUERYResult } from "@/sanity.types";
 import { PortableText } from "next-sanity";
 
+interface SocialLink {
+  url: string;
+  icon: React.ElementType;
+  label: string;
+}
+
 export default async function AboutSection() {
   const about = await client.fetch(HOME_ABOUT_QUERY);
   const data: HOME_ABOUT_QUERYResult[0] = about[0];
+
+  const socialLinks: SocialLink[] = data.socialLinks
+    ? [
+        { url: data.socialLinks[0], icon: FaLinkedinIn, label: "LinkedIn" },
+        { url: data.socialLinks[1], icon: FaFacebookF, label: "Facebook" },
+        { url: data.socialLinks[2], icon: FaMediumM, label: "Medium" },
+      ]
+    : [];
 
   return (
     <section className="py-8 md:pt-12" id="about">
@@ -33,46 +47,23 @@ export default async function AboutSection() {
             ))}
         </div>
 
-        <div className="flex justify-center space-x-6">
-          {about[0].socialLinks && about[0].socialLinks[0] && (
-            <Link
-              href={about[0].socialLinks[0]}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
-            >
-              <span className="w-6 h-6">
-                <FaLinkedinIn />
-              </span>
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-          )}
-
-          {about[0].socialLinks && about[0].socialLinks[1] && (
-            <Link
-              href={about[0].socialLinks[1]}
-              target="_blank"
-              rel="noopener noreferrer"
-              className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
-            >
-              <span className="w-6 h-6">
-                <FaFacebookF />
-              </span>
-              <span className="sr-only">Facebook</span>
-            </Link>
-          )}
-          {about[0].socialLinks && about[0].socialLinks[2] && (
-            <Link
-              href={about[0].socialLinks[2]}
-              target="_blank"
-              rel="noopener noreferrer"
-              className=" border border-black p-1 rounded-lg hover:text-primary hover:border-primary transition-colors"
-            >
-              <span className="w-6 h-6">
-                <FaMediumM />
-              </span>
-              <span className="sr-only">Medium</span>
-            </Link>
+        <div className="flex justify-center items-center space-x-4">
+          {socialLinks.map(
+            (link, index) =>
+              link.url && (
+                <Link
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
+                >
+                  <span className="w-8 h-8 flex items-center justify-center">
+                    <link.icon className="w-6 h-6" />
+                  </span>
+                  <span className="sr-only">{link.label}</span>
+                </Link>
+              )
           )}
         </div>
       </div>

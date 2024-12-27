@@ -619,6 +619,12 @@ export type ABOUT_QUERYResult = Array<{
     _type: "image";
   } | null;
 }>;
+// Variable: FOOTER_QUERY
+// Query: *[_type == "homepageAbout"]{socialLinks, socialAltText}
+export type FOOTER_QUERYResult = Array<{
+  socialLinks: Array<string> | null;
+  socialAltText: Array<string> | null;
+}>;
 // Variable: BLOG_INDEX_QUERY
 // Query: *[_type == "post"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }
 export type BLOG_INDEX_QUERYResult = Array<{
@@ -998,14 +1004,6 @@ export type SINGLE_SERVICE_PAGE_QUERYResult = {
   }> | null;
   hook: string | null;
 } | null;
-// Variable: SERVICE_NAV_QUERY
-// Query: *[_type == "service"]{_id, title, slug, icon}
-export type SERVICE_NAV_QUERYResult = Array<{
-  _id: string;
-  title: string | null;
-  slug: Slug | null;
-  icon: "chart-line" | "fire-extinguisher" | "flame" | "handshake" | "speech" | "user" | null;
-}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -1014,10 +1012,10 @@ declare module "@sanity/client" {
     "*[_type == \"homeServices\"]{_id, title, body, button_text, button_link, image, socialAltText}\n": SERVICES_QUERYResult;
     "*[_type == \"homepageAbout\"]{ _id, title, body, socialAltText, socialLinks }\n": HOME_ABOUT_QUERYResult;
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
+    "*[_type == \"homepageAbout\"]{socialLinks, socialAltText}\n": FOOTER_QUERYResult;
     "*[_type == \"post\"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }\n": BLOG_INDEX_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }\n": SINGLE_BLOG_POST_QUERYResult;
     "*[_type == \"service\"]{_id, heroImage, title, heroText, intro, slug, approach, keyElements, chooseUs, hook}\n": SERVICE_PAGE_QUERYResult;
     "*[_type == \"service\" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SINGLE_SERVICE_PAGE_QUERYResult;
-    "*[_type == \"service\"]{_id, title, slug, icon}\n": SERVICE_NAV_QUERYResult;
   }
 }

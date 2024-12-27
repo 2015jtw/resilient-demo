@@ -30,7 +30,7 @@ const TwoColumnLayout = ({
   const descriptionContent = item.body.map((block, blockIdx) => (
     <div
       key={blockIdx}
-      className="text-sm lg:text-base xl:text-lg leading-8 xl:leading-10 mb-4"
+      className={`${longImageOnDesktop ? `lg:text-lg` : `lg:text-base`} text-sm xl:text-lg mb-4`}
     >
       {block.children.map((child, childIdx) => (
         <p key={childIdx}>{child.text}</p>
@@ -39,11 +39,11 @@ const TwoColumnLayout = ({
   ));
 
   const ContentSection = (
-    <div className="w-full md:w-1/2 space-y-2 lg:space-y-6 px-1 lg:px-5 xl:px-12">
-      <h3 className="text-3xl font-normal">{item.title}</h3>
-      <div className="space-y-4">{descriptionContent}</div>
+    <div className="w-full md:w-1/2 space-y-2 lg:space-y-6 px-2">
+      <h3 className="text-3xl md:px-2 font-normal">{item.title}</h3>
+      <div className="space-y-4 md:px-2">{descriptionContent}</div>
       {item.button_text && item.button_link && (
-        <Link href={item.button_link}>
+        <Link href={item.button_link} className="md:px-2">
           <Button className="mt-4">{item.button_text}</Button>
         </Link>
       )}
@@ -88,7 +88,7 @@ const TwoColumnLayout = ({
             src={imageSrc}
             alt={item.socialAltText}
             width={300}
-            height={longImageOnDesktop ? 450 : 300}
+            height={longImageOnDesktop ? 400 : 300}
             className="rounded-lg object-cover w-full h-full"
           />
         </AspectRatio>
