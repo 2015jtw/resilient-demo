@@ -34,11 +34,6 @@ const ClientForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
-  // const onSubmit = (values: z.infer<typeof formSchema>) => {
-  //   console.log(values);
-  //   setIsSubmitted(true);
-  // };
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
