@@ -18,11 +18,12 @@ import {
 
 // Sanity
 import { SERVICES_QUERY } from "@/sanity/lib/queries";
+import { SERVICES_QUERYResult } from "@/sanity.types";
 import { client } from "../sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
 export default async function Home() {
-  const data = await client.fetch(SERVICES_QUERY);
+  const data: SERVICES_QUERYResult = await client.fetch(SERVICES_QUERY);
 
   return (
     <>

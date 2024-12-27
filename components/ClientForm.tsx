@@ -1,5 +1,9 @@
 "use client";
 
+// React/NextJS
+import { useState } from "react";
+
+// UI
 import {
   Form,
   FormField,
@@ -11,11 +15,12 @@ import {
 import { Textarea } from "./ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "./ui/input";
+
+// Zod + React Hook Form + Nodemailer
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-
-import { useState } from "react";
+import { sendEmail } from "@/app/actions/sendEmail";
 
 // form schema
 const formSchema = z.object({
@@ -26,12 +31,13 @@ const formSchema = z.object({
 });
 
 const ClientForm = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    setIsSubmitted(true);
-  };
+  // const onSubmit = (values: z.infer<typeof formSchema>) => {
+  //   console.log(values);
+  //   setIsSubmitted(true);
+  // };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -43,103 +49,111 @@ const ClientForm = () => {
     },
   });
 
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    try {
+      const result = await sendEmail(values);
+      if (result.success) {
+        setSubmitMessage("Your message has been sent successfully!");
+        form.reset();
+      } else {
+        setSubmitMessage("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setSubmitMessage("An error occurred: " + error.message);
+      } else {
+        setSubmitMessage("An unknown error occurred.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <Form {...form}>
       <div
         className="bg-background container mx-auto px-4 pb-8"
         id="contact-form"
       >
-        {!isSubmitted ? (
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="max-w-2xl mx-auto w-full flex flex-col gap-4 my-12"
-          >
-            <h2 className="text-4xl text-center">Contact Us</h2>
-            <div className="flex flex-col md:flex-row gap-4">
-              <FormField
-                name="firstName"
-                control={form.control}
-                render={({ field }) => {
-                  return (
-                    <FormItem className="flex-1">
-                      <FormLabel>First Name</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="John" type="text" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
-              />
-
-              <FormField
-                name="lastName"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Doe" type="text" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="max-w-2xl mx-auto w-full flex flex-col gap-4 my-12"
+        >
+          <h2 className="text-4xl text-center">Contact Us</h2>
+          <div className="flex flex-col md:flex-row gap-4">
             <FormField
-              name="email"
+              name="firstName"
               control={form.control}
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
+                <FormItem className="flex-1">
+                  <FormLabel>First Name</FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="john.doe@gmail.com"
-                      type="email"
-                    />
+                    <Input {...field} placeholder="John" type="text" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
             <FormField
-              name="message"
+              name="lastName"
               control={form.control}
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Message</FormLabel>
+                <FormItem className="flex-1">
+                  <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Textarea
-                      rows={5}
-                      {...field}
-                      placeholder="Put your Message"
-                    />
+                    <Input {...field} placeholder="Doe" type="text" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
-          </form>
-        ) : (
-          <div className="flex flex-col items-center justify-center gap-4 my-12">
-            <h2 className="text-4xl text-center">Contact Us</h2>
-
-            <h3 className="text-2xl pb-4">Your message has been received!</h3>
-
-            <Button
-              onClick={() => {
-                setIsSubmitted(false);
-                form.reset();
-              }}
-            >
-              Submit Another Message
-            </Button>
           </div>
-        )}
+          <FormField
+            name="email"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="john.doe@example.com"
+                    type="email"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            name="message"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Message</FormLabel>
+                <FormControl>
+                  <Textarea
+                    rows={5}
+                    {...field}
+                    placeholder="Your message here"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Submit"}
+          </Button>
+          {submitMessage && (
+            <p
+              className={`text-center ${submitMessage.includes("successfully") ? "text-green-600" : "text-red-600"}`}
+            >
+              {submitMessage}
+            </p>
+          )}
+        </form>
       </div>
     </Form>
   );
