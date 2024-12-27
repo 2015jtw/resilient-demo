@@ -56,27 +56,31 @@ export default async function AboutUs() {
         </Card>
       </div>
 
-      <div className="container mx-auto my-12 px-4 max-w-5xl py-6">
-        {data.map((section, idx) => (
-          <TwoColumnLayout
-            key={idx}
-            item={{
-              title: section.title ?? "Default Title",
-              body: section.description?.map((desc) => ({
-                children: desc.children?.map((child) => ({
-                  text: child.text ?? "Default Description",
-                })) ?? [{ text: "Default Description" }],
-              })) ?? [{ children: [{ text: "Default Description" }] }],
-              socialAltText: "Featured content",
-              image:
-                section.imageSrc && section.imageSrc.asset
-                  ? { asset: { _ref: section.imageSrc.asset._ref } }
-                  : { asset: { _ref: "default_ref" } },
-            }}
-            imageLeft={section.imageLeft ?? false}
-            longImageOnDesktop={true}
-          />
-        ))}
+      <div className="bg-white bg-dot-black/[0.2] relative">
+        {/* Radial gradient for the container to give a faded look */}
+        <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
+        <div className="container mx-auto py-2 px-4 max-w-5xl">
+          {data.map((section, idx) => (
+            <TwoColumnLayout
+              key={idx}
+              item={{
+                title: section.title ?? "Default Title",
+                body: section.description?.map((desc) => ({
+                  children: desc.children?.map((child) => ({
+                    text: child.text ?? "Default Description",
+                  })) ?? [{ text: "Default Description" }],
+                })) ?? [{ children: [{ text: "Default Description" }] }],
+                socialAltText: "Featured content",
+                image:
+                  section.imageSrc && section.imageSrc.asset
+                    ? { asset: { _ref: section.imageSrc.asset._ref } }
+                    : { asset: { _ref: "default_ref" } },
+              }}
+              imageLeft={section.imageLeft ?? false}
+              longImageOnDesktop={true}
+            />
+          ))}
+        </div>
       </div>
       <ClientForm />
     </>

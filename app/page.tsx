@@ -11,21 +11,28 @@ import TwoColumnLayout from "@/components/TwoColumn";
 import { SERVICES_QUERY } from "@/sanity/lib/queries";
 import { SERVICES_QUERYResult } from "@/sanity.types";
 import { client } from "../sanity/lib/client";
-import { DotBackground } from "@/components/DotBackground";
+
+const options = { next: { revalidate: 5 } };
 
 export default async function Home() {
-  const data: SERVICES_QUERYResult = await client.fetch(SERVICES_QUERY);
+  const data: SERVICES_QUERYResult = await client.fetch(
+    SERVICES_QUERY,
+    {},
+    options
+  );
 
   return (
     <>
       <HeroSection />
 
-      <div className="bg-white">
-        <h2 className="text-center text-4xl py-8 lg:py-12">Our Services</h2>
+      <div className="bg-white bg-dot-black/[0.2] relative">
+        <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
+
+        <h2 className="text-center text-4xl pt-12 pb-8">Our Services</h2>
         <div className="flex flex-col gap-30 w-full container mx-auto">
           {data &&
             data.map((service, idx) => (
-              <div className="p-4" key={idx}>
+              <div key={idx}>
                 <TwoColumnLayout
                   item={{
                     title: service.title ?? "Service",
@@ -50,9 +57,7 @@ export default async function Home() {
             ))}
         </div>
 
-        <DotBackground>
-          <AboutSection />
-        </DotBackground>
+        <AboutSection />
         <ClientForm />
       </div>
     </>

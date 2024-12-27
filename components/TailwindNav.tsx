@@ -34,7 +34,7 @@ export default function TailwindNav() {
   };
 
   return (
-    <header className="bg-white">
+    <header className="bg-white shadow-md">
       {/* DESKTOP NAV */}
       <nav
         aria-label="Global"

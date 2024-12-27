@@ -68,14 +68,16 @@ const ClientForm = () => {
   return (
     <Form {...form}>
       <div
-        className="bg-background container mx-auto px-4 pb-8"
+        className="bg-white bg-dot-black/[0.2] relative px-4 py-12 pb-16 mt-1 "
         id="contact-form"
       >
+        <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
+        <h2 className="text-4xl text-center py-4">Contact Us</h2>
+
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="max-w-2xl mx-auto w-full flex flex-col gap-4 my-12"
+          className="bg-white max-w-2xl mx-auto w-full flex flex-col gap-4 container"
         >
-          <h2 className="text-4xl text-center">Contact Us</h2>
           <div className="flex flex-col md:flex-row gap-4">
             <FormField
               name="firstName"
