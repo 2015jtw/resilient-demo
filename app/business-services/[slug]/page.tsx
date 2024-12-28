@@ -11,9 +11,11 @@ import { SINGLE_SERVICE_PAGE_QUERYResult } from "@/sanity.types";
 
 interface ServiceTemplateProps {
   params: {
-    slug: string; // This represents the dynamic segment of the URL
+    slug: string;
   };
 }
+
+const options = { next: { revalidate: 30 } };
 
 export default async function ServiceTemplate({
   params,
@@ -21,7 +23,8 @@ export default async function ServiceTemplate({
   const { slug } = params;
   const service: SINGLE_SERVICE_PAGE_QUERYResult | null = await client.fetch(
     SINGLE_SERVICE_PAGE_QUERY,
-    { slug }
+    { slug },
+    options
   );
 
   return (
