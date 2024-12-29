@@ -1,7 +1,7 @@
 "use client";
 
 // React/NextJS
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -25,13 +25,24 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 // Services Data
 import servicesHardCoded from "@/lib/data";
 
-export default function TailwindNav() {
+// Sanity
+import { NAVBAR_QUERYResult } from "@/sanity.types";
+
+export default function TailwindNav({
+  services,
+}: {
+  services: NAVBAR_QUERYResult;
+}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleMobileClick = () => {
     setMobileMenuOpen(false);
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  useEffect(() => {
+    console.log("navbarData", services);
+  }, [services]);
 
   return (
     <header className="bg-white shadow-md">

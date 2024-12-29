@@ -961,6 +961,13 @@
         },
         "optional": true
       },
+      "NavDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "icon": {
         "type": "objectAttribute",
         "value": {

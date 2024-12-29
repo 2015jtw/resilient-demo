@@ -151,6 +151,7 @@ export type Service = {
     alt?: string;
     _type: "image";
   };
+  NavDescription?: string;
   icon?: "fire-extinguisher" | "user" | "speech" | "flame" | "handshake" | "chart-line";
   keyElements?: Array<{
     children?: Array<{
@@ -1004,6 +1005,15 @@ export type SINGLE_SERVICE_PAGE_QUERYResult = {
   }> | null;
   hook: string | null;
 } | null;
+// Variable: NAVBAR_QUERY
+// Query: *[_type == "service"]{_id, title, slug, icon, NavDescription}
+export type NAVBAR_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  icon: "chart-line" | "fire-extinguisher" | "flame" | "handshake" | "speech" | "user" | null;
+  NavDescription: string | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -1017,5 +1027,6 @@ declare module "@sanity/client" {
     "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }\n": SINGLE_BLOG_POST_QUERYResult;
     "*[_type == \"service\"]{_id, heroImage, title, heroText, intro, slug, approach, keyElements, chooseUs, hook}\n": SERVICE_PAGE_QUERYResult;
     "*[_type == \"service\" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SINGLE_SERVICE_PAGE_QUERYResult;
+    "*[_type == \"service\"]{_id, title, slug, icon, NavDescription}\n": NAVBAR_QUERYResult;
   }
 }

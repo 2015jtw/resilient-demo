@@ -51,6 +51,10 @@ export const ServiceType = defineType({
       ],
     }),
     defineField({
+      name: "NavDescription",
+      type: "string",
+    }),
+    defineField({
       name: "icon",
       title: "Icon",
       type: "string",
