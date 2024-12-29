@@ -21,9 +21,14 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-
-// Services Data
-import servicesHardCoded from "@/lib/data";
+import {
+  FireExtinguisher,
+  User,
+  Speech,
+  Flame,
+  Handshake,
+  ChartLine,
+} from "lucide-react";
 
 // Sanity
 import { NAVBAR_QUERYResult } from "@/sanity.types";
@@ -40,9 +45,16 @@ export default function TailwindNav({
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  useEffect(() => {
-    console.log("navbarData", services);
-  }, [services]);
+  useEffect(() => {}, [services]);
+
+  const icon_map = {
+    "fire-extinguisher": FireExtinguisher,
+    speech: Speech,
+    flame: Flame,
+    handshake: Handshake,
+    user: User,
+    "chart-line": ChartLine,
+  };
 
   return (
     <header className="bg-white shadow-md">
@@ -90,33 +102,39 @@ export default function TailwindNav({
                   className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                 >
                   <div className="p-4">
-                    {servicesHardCoded.map((item) => (
-                      <div
-                        key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                      >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <item.icon
-                            aria-hidden="true"
-                            className="h-6 w-6 text-gray-600 group-hover:text-primary"
-                          />
-                        </div>
-                        <div className="flex-auto">
-                          <Link href={item.href} passHref>
-                            <CloseButton
-                              as="a"
-                              className="block font-semibold text-gray-900"
+                    {services.map((item) => {
+                      const Icon = item.icon ? icon_map[item.icon] : null;
+
+                      return (
+                        <div
+                          key={item._id}
+                          className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                        >
+                          <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            {Icon && (
+                              <Icon className="h-6 w-6 text-gray-600 group-hover:text-primary" />
+                            )}
+                          </div>
+                          <div className="flex-auto">
+                            <Link
+                              href={`/business-services/${item.slug?.current}`}
+                              passHref
                             >
-                              {item.name}
-                              <span className="absolute inset-0" />
-                            </CloseButton>
-                          </Link>
-                          <p className="mt-1 text-gray-600">
-                            {item.description}
-                          </p>
+                              <CloseButton
+                                as="a"
+                                className="block font-semibold text-gray-900"
+                              >
+                                {item.title}
+                                <span className="absolute inset-0" />
+                              </CloseButton>
+                            </Link>
+                            <p className="mt-1 text-gray-600">
+                              {item.NavDescription}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </PopoverPanel>
               </>
@@ -180,15 +198,15 @@ export default function TailwindNav({
                     />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...servicesHardCoded].map((item) => (
+                    {[...services].map((item) => (
                       <DisclosureButton
-                        key={item.name}
+                        key={item._id}
                         as="a"
-                        href={item.href}
+                        href={`/business-services/${item.slug?.current}`}
                         onClick={handleMobileClick}
                         className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-primary"
                       >
-                        {item.name}
+                        {item.title}
                       </DisclosureButton>
                     ))}
                   </DisclosurePanel>
