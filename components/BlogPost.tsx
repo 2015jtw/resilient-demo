@@ -10,10 +10,20 @@ import { Calendar, Clock, ArrowLeft } from "lucide-react";
 
 // sanity
 import { urlFor } from "@/sanity/lib/image";
-import { SINGLE_BLOG_POST_QUERYResult } from "@/sanity.types";
+import {
+  SINGLE_BLOG_POST_QUERYResult,
+  RECENT_BLOGS_QUERYResult,
+} from "@/sanity.types";
 import { PortableText } from "next-sanity";
+import RecentPostsCarousel from "./RecentBlogPosts";
 
-const BlogPost = ({ post }: { post: SINGLE_BLOG_POST_QUERYResult }) => {
+const BlogPost = ({
+  post,
+  recentPosts,
+}: {
+  post: SINGLE_BLOG_POST_QUERYResult;
+  recentPosts: RECENT_BLOGS_QUERYResult;
+}) => {
   return (
     <article className="min-h-screen bg-gray-50">
       <div key={post?._id}>
@@ -152,6 +162,8 @@ const BlogPost = ({ post }: { post: SINGLE_BLOG_POST_QUERYResult }) => {
                 />
               </div>
             )}
+
+            <RecentPostsCarousel recentPosts={recentPosts || []} />
           </div>
         </div>
       </div>

@@ -682,6 +682,63 @@ export type BLOG_INDEX_QUERYResult = Array<{
     name: string | null;
   } | null;
 }>;
+// Variable: RECENT_BLOGS_QUERY
+// Query: *[_type == "post"] | order(publishedAt desc) [0...$limit]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title, _id}, author -> {name} }
+export type RECENT_BLOGS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  publishedAt: string | null;
+  intro: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  slug: Slug | null;
+  categories: Array<{
+    title: string | null;
+    _id: string;
+  }> | null;
+  author: {
+    name: string | null;
+  } | null;
+}>;
 // Variable: SINGLE_BLOG_POST_QUERY
 // Query: *[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }
 export type SINGLE_BLOG_POST_QUERYResult = {
@@ -1024,6 +1081,7 @@ declare module "@sanity/client" {
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
     "*[_type == \"homepageAbout\"]{socialLinks, socialAltText}\n": FOOTER_QUERYResult;
     "*[_type == \"post\"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }\n": BLOG_INDEX_QUERYResult;
+    "*[_type == \"post\"] | order(publishedAt desc) [0...$limit]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title, _id}, author -> {name} }\n": RECENT_BLOGS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }\n": SINGLE_BLOG_POST_QUERYResult;
     "*[_type == \"service\"]{_id, heroImage, title, heroText, intro, slug, approach, keyElements, chooseUs, hook}\n": SERVICE_PAGE_QUERYResult;
     "*[_type == \"service\" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SINGLE_SERVICE_PAGE_QUERYResult;

@@ -20,6 +20,10 @@ export const BLOG_INDEX_QUERY =
   defineQuery(`*[_type == "post"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }
 `);
 
+export const RECENT_BLOGS_QUERY =
+  defineQuery(`*[_type == "post"] | order(publishedAt desc) [0...$limit]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title, _id}, author -> {name} }
+`);
+
 export const SINGLE_BLOG_POST_QUERY =
   defineQuery(`*[_type == "post" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }
 `);
@@ -33,5 +37,5 @@ export const SINGLE_SERVICE_PAGE_QUERY =
 `);
 
 export const NAVBAR_QUERY =
-  defineQuery(`*[_type == "service"]{_id, title, slug, icon, NavDescription}
+  defineQuery(`*[_type == "service"] | order(title asc){_id, title, slug, icon, NavDescription}
 `);
