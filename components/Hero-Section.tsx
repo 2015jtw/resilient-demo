@@ -17,7 +17,7 @@ export default function HeroSection() {
           <div className="flex flex-col justify-center md:flex-row gap-8 md:gap-16 h-full">
             {/* Left Column: Mission Statement and Title */}
             <div className="md:w-2/3 text-center md:text-left flex flex-col justify-center md:gap-y-52">
-              <h1 className="text-white text-4xl leading-10 font-bold tracking-tight sm:text-6xl">
+              <h1 className="text-white mb-2 leading-10 font-bold tracking-tight text-6xl">
                 Resilient LLC
               </h1>
               <p className="text-amber-300 text-sm xl:text-base leading-8">
@@ -26,8 +26,8 @@ export default function HeroSection() {
             </div>
 
             {/* Right Column: Additional Text */}
-            <div className="md:w-1/3 text-center md:text-left self-center">
-              <p className="my-6 text-lg font-medium leading-8 text-white border-l-4 border-primary pl-4">
+            <div className="md:w-1/3 self-center">
+              <p className="my-6 text-lg font-medium leading-8 text-center md:text-left text-white md:border-l-4 md:border-primary md:pl-4">
                 The COVID-19 pandemic was a wake-up call to leadership that
                 preparedness matters.
               </p>

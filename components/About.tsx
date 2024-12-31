@@ -11,8 +11,10 @@ interface SocialLink {
   label: string;
 }
 
+const options = { next: { revalidate: 30 } };
+
 export default async function AboutSection() {
-  const about = await client.fetch(HOME_ABOUT_QUERY);
+  const about = await client.fetch(HOME_ABOUT_QUERY, {}, options);
   const data: HOME_ABOUT_QUERYResult[0] = about[0];
 
   const socialLinks: SocialLink[] = data.socialLinks
