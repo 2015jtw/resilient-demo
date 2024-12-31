@@ -116,11 +116,12 @@ const ServiceHero = ({
                 }}
               />
               <p className="italic">{service && service.hook}</p>
-              <Link href="/#contact-form" passHref>
+              <Link
+                href="/#contact-form"
+                className="underline-offset-4 hover:underline"
+              >
                 <Button variant={"secondary"} className="my-4">
-                  <a className="underline-offset-4 hover:underline">
-                    Get Started
-                  </a>
+                  Get Started
                 </Button>
               </Link>
             </div>

@@ -18,8 +18,14 @@ import { BLOG_INDEX_QUERYResult } from "@/sanity.types";
 import { PortableText } from "next-sanity";
 import { urlFor } from "@/sanity/lib/image";
 
+const options = { next: { revalidate: 30 } };
+
 export default async function BlogIndex() {
-  const posts: BLOG_INDEX_QUERYResult = await client.fetch(BLOG_INDEX_QUERY);
+  const posts: BLOG_INDEX_QUERYResult = await client.fetch(
+    BLOG_INDEX_QUERY,
+    {},
+    options
+  );
   return (
     <>
       <div className="bg-white bg-dot-black/[0.2] relative">
