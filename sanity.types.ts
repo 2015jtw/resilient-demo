@@ -295,33 +295,15 @@ export type HomepageAbout = {
   socialLinks?: Array<string>;
 };
 
-export type HomeServices = {
+export type Hero = {
   _id: string;
-  _type: "homeServices";
+  _type: "hero";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  button_text?: string;
-  button_link?: string;
+  missionStatement?: string;
+  additionalText?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -334,7 +316,6 @@ export type HomeServices = {
     alt?: string;
     _type: "image";
   };
-  socialAltText?: string;
 };
 
 export type Post = {
@@ -558,9 +539,29 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Service | AboutPage | HomepageAbout | HomeServices | Post | Author | Slug | Category | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Service | AboutPage | HomepageAbout | Hero | Post | Author | Slug | Category | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
+// Variable: HERO_QUERY
+// Query: *[_type == "hero"]{_id, title, missionStatement, additionalText, image}
+export type HERO_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  missionStatement: string | null;
+  additionalText: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+}>;
 // Variable: SERVICES_QUERY
 // Query: *[_type == "service"]{_id, title, slug, homepageContent, homepageImage}
 export type SERVICES_QUERYResult = Array<{
@@ -1128,6 +1129,7 @@ export type NAVBAR_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[_type == \"hero\"]{_id, title, missionStatement, additionalText, image}": HERO_QUERYResult;
     "*[_type == \"service\"]{_id, title, slug, homepageContent, homepageImage}\n": SERVICES_QUERYResult;
     "*[_type == \"homepageAbout\"]{ _id, title, body, socialAltText, socialLinks }\n": HOME_ABOUT_QUERYResult;
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;

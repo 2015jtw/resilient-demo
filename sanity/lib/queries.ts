@@ -1,13 +1,21 @@
 import { defineQuery } from "next-sanity";
 
+// DATA FOR HERO SECTION
+export const HERO_QUERY = defineQuery(
+  `*[_type == "hero"]{_id, title, missionStatement, additionalText, image}`
+);
+
+// DATA FOR HOMEPAGE SERVICES TWO COLUMN SECTION
 export const SERVICES_QUERY =
   defineQuery(`*[_type == "service"]{_id, title, slug, homepageContent, homepageImage}
 `);
 
+// DATA FOR HOMEPAGE ABOUT SECTION
 export const HOME_ABOUT_QUERY =
   defineQuery(`*[_type == "homepageAbout"]{ _id, title, body, socialAltText, socialLinks }
 `);
 
+// DATA FOR ABOUT PAGE
 export const ABOUT_QUERY =
   defineQuery(`*[_type == "aboutPage"]{ _id, title, description, imageLeft, imageSrc }
 `);
