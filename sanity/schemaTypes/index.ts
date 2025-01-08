@@ -4,7 +4,6 @@ import { blockContentType } from "./blockContentType";
 import { categoryType } from "./categoryType";
 import { postType } from "./postType";
 import { authorType } from "./authorType";
-import { homeServices } from "./homeServicesType";
 import { homepageAbout } from "./homepageAboutType";
 import { aboutPage } from "./aboutPageType";
 import { ServiceType } from "./serviceType";
@@ -15,7 +14,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     categoryType,
     postType,
     authorType,
-    homeServices,
     homepageAbout,
     aboutPage,
     ServiceType,

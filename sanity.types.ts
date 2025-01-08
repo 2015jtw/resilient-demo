@@ -76,6 +76,48 @@ export type Service = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  homepageContent?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  homepageImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   heroText?: string;
   intro?: string;
   approach?: Array<{
@@ -138,21 +180,6 @@ export type Service = {
     _type: "image";
     _key: string;
   }>;
-  hook?: string;
-  heroImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  NavDescription?: string;
-  icon?: "fire-extinguisher" | "user" | "speech" | "flame" | "handshake" | "chart-line";
   keyElements?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -183,6 +210,21 @@ export type Service = {
     _type: "image";
     _key: string;
   }>;
+  hook?: string;
+  heroImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  NavDescription?: string;
+  icon?: "fire-extinguisher" | "user" | "speech" | "flame" | "handshake" | "chart-line";
 };
 
 export type AboutPage = {
@@ -520,19 +562,20 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: SERVICES_QUERY
-// Query: *[_type == "homeServices"]{_id, title, body, button_text, button_link, image, socialAltText}
+// Query: *[_type == "service"]{_id, title, slug, homepageContent, homepageImage}
 export type SERVICES_QUERYResult = Array<{
   _id: string;
   title: string | null;
-  body: Array<{
+  slug: Slug | null;
+  homepageContent: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
       _type: "span";
       _key: string;
     }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
     markDefs?: Array<{
       href?: string;
       _type: "link";
@@ -541,10 +584,20 @@ export type SERVICES_QUERYResult = Array<{
     level?: number;
     _type: "block";
     _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
   }> | null;
-  button_text: string | null;
-  button_link: string | null;
-  image: {
+  homepageImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -556,7 +609,6 @@ export type SERVICES_QUERYResult = Array<{
     alt?: string;
     _type: "image";
   } | null;
-  socialAltText: string | null;
 }>;
 // Variable: HOME_ABOUT_QUERY
 // Query: *[_type == "homepageAbout"]{ _id, title, body, socialAltText, socialLinks }
@@ -1063,7 +1115,7 @@ export type SINGLE_SERVICE_PAGE_QUERYResult = {
   hook: string | null;
 } | null;
 // Variable: NAVBAR_QUERY
-// Query: *[_type == "service"]{_id, title, slug, icon, NavDescription}
+// Query: *[_type == "service"] | order(title asc){_id, title, slug, icon, NavDescription}
 export type NAVBAR_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -1076,7 +1128,7 @@ export type NAVBAR_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"homeServices\"]{_id, title, body, button_text, button_link, image, socialAltText}\n": SERVICES_QUERYResult;
+    "*[_type == \"service\"]{_id, title, slug, homepageContent, homepageImage}\n": SERVICES_QUERYResult;
     "*[_type == \"homepageAbout\"]{ _id, title, body, socialAltText, socialLinks }\n": HOME_ABOUT_QUERYResult;
     "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
     "*[_type == \"homepageAbout\"]{socialLinks, socialAltText}\n": FOOTER_QUERYResult;
@@ -1085,6 +1137,6 @@ declare module "@sanity/client" {
     "*[_type == \"post\" && slug.current == $slug][0]{_id, title, mainImage, publishedAt, intro, readTime, main_content, slug, categories[] -> {title}, author -> {name, role, image} }\n": SINGLE_BLOG_POST_QUERYResult;
     "*[_type == \"service\"]{_id, heroImage, title, heroText, intro, slug, approach, keyElements, chooseUs, hook}\n": SERVICE_PAGE_QUERYResult;
     "*[_type == \"service\" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SINGLE_SERVICE_PAGE_QUERYResult;
-    "*[_type == \"service\"]{_id, title, slug, icon, NavDescription}\n": NAVBAR_QUERYResult;
+    "*[_type == \"service\"] | order(title asc){_id, title, slug, icon, NavDescription}\n": NAVBAR_QUERYResult;
   }
 }

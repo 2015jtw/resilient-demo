@@ -2,7 +2,7 @@ import { defineType, defineField } from "sanity";
 
 export const ServiceType = defineType({
   name: "service",
-  title: "Service",
+  title: "Services",
   type: "document",
   fields: [
     defineField({
@@ -15,6 +15,21 @@ export const ServiceType = defineType({
       options: {
         source: "title",
       },
+    }),
+    defineField({
+      name: "homepageContent",
+      type: "blockContent",
+    }),
+    defineField({
+      name: "homepageImage",
+      type: "image",
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Text describing the image",
+        },
+      ],
     }),
     defineField({
       name: "heroText",
@@ -30,6 +45,10 @@ export const ServiceType = defineType({
     }),
     defineField({
       name: "chooseUs",
+      type: "blockContent",
+    }),
+    defineField({
+      name: "keyElements",
       type: "blockContent",
     }),
     defineField({
@@ -78,10 +97,6 @@ export const ServiceType = defineType({
         ],
       },
       description: "Choose an icon to represent this service",
-    }),
-    defineField({
-      name: "keyElements",
-      type: "blockContent",
     }),
   ],
 });

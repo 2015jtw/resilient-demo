@@ -1,7 +1,7 @@
 import { defineQuery } from "next-sanity";
 
 export const SERVICES_QUERY =
-  defineQuery(`*[_type == "homeServices"]{_id, title, body, button_text, button_link, image, socialAltText}
+  defineQuery(`*[_type == "service"]{_id, title, slug, homepageContent, homepageImage}
 `);
 
 export const HOME_ABOUT_QUERY =

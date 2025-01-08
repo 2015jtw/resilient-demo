@@ -36,19 +36,24 @@ export default async function Home() {
                 <TwoColumnLayout
                   item={{
                     title: service.title ?? "Service",
-                    body:
-                      service.body?.map((block) => ({
-                        children:
-                          block.children?.map((child) => ({
-                            text: child.text ?? "",
-                          })) ?? [],
-                      })) ?? [],
-                    button_text: service.button_text ?? "Learn More",
-                    button_link: service.button_link ?? "#",
-                    socialAltText: service.socialAltText ?? "Image of Service",
+                    body: Array.isArray(service.homepageContent)
+                      ? service.homepageContent.map((content) => ({
+                          children:
+                            "children" in content &&
+                            Array.isArray(content.children)
+                              ? content.children.map((child) => ({
+                                  text: child.text ?? "",
+                                }))
+                              : [],
+                        }))
+                      : [{ children: [{ text: "Content" }] }],
+                    button_text: "Learn More",
+                    button_link: `/business-services/${service.slug?.current}`,
+                    socialAltText:
+                      service.homepageImage?.alt ?? "Image of Service",
                     image:
-                      service.image && service.image.asset
-                        ? { asset: { _ref: service.image.asset._ref } }
+                      service.homepageImage && service.homepageImage.asset
+                        ? { asset: { _ref: service.homepageImage.asset._ref } }
                         : { asset: { _ref: "" } },
                   }}
                   imageLeft={idx % 2 === 0}

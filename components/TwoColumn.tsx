@@ -7,7 +7,7 @@ import Link from "next/link";
 
 interface ContentItem {
   title: string;
-  body: { children: { text: string }[] }[];
+  body: { children: { text: string }[] }[] | null;
   button_text?: string;
   button_link?: string;
   socialAltText: string;
@@ -27,7 +27,7 @@ const TwoColumnLayout = ({
   className,
   longImageOnDesktop = false,
 }: TwoColumnLayoutProps) => {
-  const descriptionContent = item.body.map((block, blockIdx) => (
+  const descriptionContent = item.body?.map((block, blockIdx) => (
     <div
       key={blockIdx}
       className={`${longImageOnDesktop ? `lg:text-lg` : `lg:text-base`} text-sm xl:text-lg mb-4`}
