@@ -26,6 +26,17 @@ import { sendEmail } from "@/app/actions/sendEmail";
 const formSchema = z.object({
   firstName: z.string().min(1).max(50),
   lastName: z.string().min(1).max(50),
+  phone: z
+    .string()
+    .optional()
+    .refine(
+      (value) =>
+        !value ||
+        /^(\+?\d{1,3}[- ]?)?\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/.test(value),
+      {
+        message: "Invalid phone number format",
+      }
+    ),
   email: z.string().email(),
   message: z.string().min(10).max(500),
 });
@@ -39,6 +50,7 @@ const ClientForm = () => {
     defaultValues: {
       firstName: "",
       lastName: "",
+      phone: "",
       email: "",
       message: "",
     },
@@ -74,6 +86,10 @@ const ClientForm = () => {
         <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
         <h2 className="text-4xl text-center py-4">Contact Us</h2>
 
+        <p className="text-center text-lg pb-6 italic">
+          Contact Communications are encrypted for your privacy and security
+        </p>
+
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="bg-white max-w-2xl mx-auto w-full flex flex-col gap-4 container"
@@ -106,23 +122,43 @@ const ClientForm = () => {
               )}
             />
           </div>
-          <FormField
-            name="email"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="john.doe@example.com"
-                    type="email"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex flex-col md:flex-row gap-4">
+            <FormField
+              name="email"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="john.doe@example.com"
+                      type="email"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="phone"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="(703) - 555 - 1234"
+                      type="tel"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
           <FormField
             name="message"
             control={form.control}
