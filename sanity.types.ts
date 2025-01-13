@@ -68,6 +68,28 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Afiliations = {
+  _id: string;
+  _type: "afiliations";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  url?: string;
+  logo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
 export type Service = {
   _id: string;
   _type: "service";
@@ -119,25 +141,7 @@ export type Service = {
     _type: "image";
   };
   heroText?: string;
-  intro?: string;
-  approach?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
+  heroImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -148,9 +152,9 @@ export type Service = {
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-    _key: string;
-  }>;
-  chooseUs?: Array<{
+  };
+  intro?: string;
+  approach?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -210,8 +214,24 @@ export type Service = {
     _type: "image";
     _key: string;
   }>;
-  hook?: string;
-  heroImage?: {
+  chooseUs?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -222,9 +242,11 @@ export type Service = {
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  };
+    _key: string;
+  }>;
+  hook?: string;
   NavDescription?: string;
-  icon?: "fire-extinguisher" | "user" | "speech" | "flame" | "handshake" | "chart-line";
+  icon?: "cloud-lightning" | "users-round" | "speech" | "fingerprint" | "brain-cog" | "chart-area";
 };
 
 export type AboutPage = {
@@ -541,7 +563,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Service | AboutPage | HomepageAbout | Hero | Post | Author | Slug | Category | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Afiliations | Service | AboutPage | HomepageAbout | Hero | Post | Author | Slug | Category | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: HERO_QUERY
@@ -1125,8 +1147,27 @@ export type NAVBAR_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: Slug | null;
-  icon: "chart-line" | "fire-extinguisher" | "flame" | "handshake" | "speech" | "user" | null;
+  icon: "brain-cog" | "chart-area" | "cloud-lightning" | "fingerprint" | "speech" | "users-round" | null;
   NavDescription: string | null;
+}>;
+// Variable: AFFILIATIONS_QUERY
+// Query: *[_type == "afiliations"]{_id, title, url, logo}
+export type AFFILIATIONS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  url: string | null;
+  logo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
 }>;
 
 // Query TypeMap
@@ -1144,5 +1185,6 @@ declare module "@sanity/client" {
     "*[_type == \"service\"]{_id, heroImage, title, heroText, intro, slug, approach, keyElements, chooseUs, hook}\n": SERVICE_PAGE_QUERYResult;
     "*[_type == \"service\" && slug.current == $slug][0]{_id, heroImage, slug, title, heroText, intro, approach, keyElements, chooseUs, hook}\n": SINGLE_SERVICE_PAGE_QUERYResult;
     "*[_type == \"service\"] | order(title asc){_id, title, slug, icon, NavDescription}\n": NAVBAR_QUERYResult;
+    "*[_type == \"afiliations\"]{_id, title, url, logo}": AFFILIATIONS_QUERYResult;
   }
 }

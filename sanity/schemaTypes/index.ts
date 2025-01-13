@@ -8,6 +8,7 @@ import { homepageAbout } from "./homepageAboutType";
 import { aboutPage } from "./aboutPageType";
 import { ServiceType } from "./serviceType";
 import { heroType } from "./heroType";
+import { afiliationsType } from "./afiliationsType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -19,5 +20,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homepageAbout,
     aboutPage,
     ServiceType,
+    afiliationsType,
   ],
 };

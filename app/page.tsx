@@ -6,6 +6,7 @@ import AboutSection from "@/components/About";
 import HeroSection from "@/components/Hero-Section";
 import ClientForm from "@/components/ClientForm";
 import TwoColumnLayout from "@/components/TwoColumn";
+import Affiliations from "@/components/Affiliations";
 
 // Sanity
 import { SERVICES_QUERY } from "@/sanity/lib/queries";
@@ -63,6 +64,7 @@ export default async function Home() {
         </div>
 
         <AboutSection />
+        <Affiliations />
         <ClientForm />
       </div>
     </>
