@@ -40,6 +40,13 @@ export const aboutPage = defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Text describing the image",
+        },
+      ],
     }),
   ],
   preview: {

@@ -17,7 +17,7 @@ export const HOME_ABOUT_QUERY =
 
 // DATA FOR ABOUT PAGE
 export const ABOUT_QUERY =
-  defineQuery(`*[_type == "aboutPage"]{ _id, title, description, imageLeft, imageSrc }
+  defineQuery(`*[_type == "aboutPage"]{ _id, title, InspirationalQuote, description, imageLeft, imageSrc }
 `);
 
 export const FOOTER_QUERY =

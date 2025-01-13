@@ -11,24 +11,28 @@ import ClientForm from "@/components/ClientForm";
 import { client } from "../../sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { ABOUT_QUERYResult } from "@/sanity.types";
+import { urlFor } from "@/sanity/lib/image";
+import { PortableText } from "next-sanity";
 
 const options = { next: { revalidate: 30 } };
 
 export default async function AboutUs() {
   const data: ABOUT_QUERYResult = await client.fetch(ABOUT_QUERY, {}, options);
   const heroData = data.find(
-    (item) => item.title === "Getting started is the hardest part"
+    (item) => item._id === "120fa5e3-cd00-446a-9956-01c86afa4912"
   );
-
-  console.log("data", heroData);
 
   return (
     <>
       <div className="relative min-h-screen flex items-center justify-center pt-16 p-4 overflow-hidden">
         {/* Background Image */}
         <Image
-          src={urlFor(heroData?.image).url() ?? "/hero-section.jpg"}
-          alt={heroData?.image?.alt ?? "Hero Image"}
+          src={
+            heroData?.imageSrc
+              ? urlFor(heroData.imageSrc).url()
+              : "/hero-section.jpg"
+          }
+          alt={heroData?.imageSrc?.alt ?? "Hero Image"}
           layout="fill"
           objectFit="cover"
           quality={100}
@@ -45,17 +49,10 @@ export default async function AboutUs() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 px-0 pb-0 font-medium leading-8">
-            <p className="italic"></p>
-            <p>
-              Resilient, LLC maintains a network of subject matter experts
-              across a wide spectrum of domains related to crises. We strive to
-              provide appropriate recommendations for the resources that may be
-              required in better preparing your organization, regardless of the
-              current environment, whether that be blue skies or in the midst of
-              a hurricane. We invite you to explore this site to gain our
-              perspectives on the crisis leadership landscape and how we might
-              guide you through the improvement process.
-            </p>
+            <p className="italic">{heroData?.InspirationalQuote}</p>
+            <div>
+              <PortableText value={heroData?.description || []} />
+            </div>
           </CardContent>
         </Card>
       </div>

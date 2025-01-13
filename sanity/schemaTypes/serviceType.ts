@@ -36,26 +36,6 @@ export const ServiceType = defineType({
       type: "string",
     }),
     defineField({
-      name: "intro",
-      type: "text",
-    }),
-    defineField({
-      name: "approach",
-      type: "blockContent",
-    }),
-    defineField({
-      name: "chooseUs",
-      type: "blockContent",
-    }),
-    defineField({
-      name: "keyElements",
-      type: "blockContent",
-    }),
-    defineField({
-      name: "hook",
-      type: "string",
-    }),
-    defineField({
       name: "heroImage",
       type: "image",
       options: {
@@ -69,6 +49,28 @@ export const ServiceType = defineType({
         },
       ],
     }),
+
+    defineField({
+      name: "intro",
+      type: "text",
+    }),
+    defineField({
+      name: "approach",
+      type: "blockContent",
+    }),
+    defineField({
+      name: "keyElements",
+      type: "blockContent",
+    }),
+
+    defineField({
+      name: "chooseUs",
+      type: "blockContent",
+    }),
+    defineField({
+      name: "hook",
+      type: "string",
+    }),
     defineField({
       name: "NavDescription",
       type: "string",
@@ -81,18 +83,18 @@ export const ServiceType = defineType({
         list: [
           {
             title: "Crisis Response",
-            value: "fire-extinguisher",
+            value: "cloud-lightning",
           },
-          { title: "Crisis Leadership", value: "user" },
+          { title: "Crisis Leadership", value: "users-round" },
           {
             title: "Crisis Commmunication",
             value: "speech",
           },
-          { title: "Risk Management", value: "flame" },
-          { title: "Business Continuity", value: "handshake" },
+          { title: "Risk Management", value: "fingerprint" },
+          { title: "Business Continuity", value: "brain-cog" },
           {
             title: "Assessments",
-            value: "chart-line",
+            value: "chart-area",
           },
         ],
       },

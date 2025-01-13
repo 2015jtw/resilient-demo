@@ -234,6 +234,7 @@ export type AboutPage = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  InspirationalQuote?: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -262,6 +263,7 @@ export type AboutPage = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
 };
@@ -638,10 +640,11 @@ export type HOME_ABOUT_QUERYResult = Array<{
   socialLinks: Array<string> | null;
 }>;
 // Variable: ABOUT_QUERY
-// Query: *[_type == "aboutPage"]{ _id, title, description, imageLeft, imageSrc }
+// Query: *[_type == "aboutPage"]{ _id, title, InspirationalQuote, description, imageLeft, imageSrc }
 export type ABOUT_QUERYResult = Array<{
   _id: string;
   title: string | null;
+  InspirationalQuote: string | null;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -670,6 +673,7 @@ export type ABOUT_QUERYResult = Array<{
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   } | null;
 }>;
@@ -1132,7 +1136,7 @@ declare module "@sanity/client" {
     "*[_type == \"hero\"]{_id, title, missionStatement, additionalText, image}": HERO_QUERYResult;
     "*[_type == \"service\"]{_id, title, slug, homepageContent, homepageImage}\n": SERVICES_QUERYResult;
     "*[_type == \"homepageAbout\"]{ _id, title, body, socialAltText, socialLinks }\n": HOME_ABOUT_QUERYResult;
-    "*[_type == \"aboutPage\"]{ _id, title, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
+    "*[_type == \"aboutPage\"]{ _id, title, InspirationalQuote, description, imageLeft, imageSrc }\n": ABOUT_QUERYResult;
     "*[_type == \"homepageAbout\"]{socialLinks, socialAltText}\n": FOOTER_QUERYResult;
     "*[_type == \"post\"]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title}, author -> {name} }\n": BLOG_INDEX_QUERYResult;
     "*[_type == \"post\"] | order(publishedAt desc) [0...$limit]{ _id, title, mainImage, publishedAt, intro, slug, categories[] -> {title, _id}, author -> {name} }\n": RECENT_BLOGS_QUERYResult;

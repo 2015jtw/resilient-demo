@@ -22,12 +22,12 @@ import {
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
-  FireExtinguisher,
-  User,
+  CloudLightning,
+  Users,
   Speech,
-  Flame,
-  Handshake,
-  ChartLine,
+  Fingerprint,
+  BrainCog,
+  ChartArea,
 } from "lucide-react";
 
 // Sanity
@@ -48,12 +48,12 @@ export default function TailwindNav({
   useEffect(() => {}, [services]);
 
   const icon_map = {
-    "fire-extinguisher": FireExtinguisher,
+    "cloud-lightning": CloudLightning,
+    "users-round": Users,
     speech: Speech,
-    flame: Flame,
-    handshake: Handshake,
-    user: User,
-    "chart-line": ChartLine,
+    fingerprint: Fingerprint,
+    "brain-cog": BrainCog,
+    "chart-area": ChartArea,
   };
 
   return (
