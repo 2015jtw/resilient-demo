@@ -12,6 +12,10 @@ export const aboutPage = defineType({
       description: 'The title for the section (e.g., "Our Principal").',
     }),
     defineField({
+      name: "InspirationalQuote",
+      type: "string",
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "array",

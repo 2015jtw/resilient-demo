@@ -12,16 +12,23 @@ import { client } from "../../sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { ABOUT_QUERYResult } from "@/sanity.types";
 
+const options = { next: { revalidate: 30 } };
+
 export default async function AboutUs() {
-  const data: ABOUT_QUERYResult = await client.fetch(ABOUT_QUERY);
+  const data: ABOUT_QUERYResult = await client.fetch(ABOUT_QUERY, {}, options);
+  const heroData = data.find(
+    (item) => item.title === "Getting started is the hardest part"
+  );
+
+  console.log("data", heroData);
 
   return (
     <>
       <div className="relative min-h-screen flex items-center justify-center pt-16 p-4 overflow-hidden">
         {/* Background Image */}
         <Image
-          src="/images/assessments.jpeg"
-          alt="Background image"
+          src={urlFor(heroData?.image).url() ?? "/hero-section.jpg"}
+          alt={heroData?.image?.alt ?? "Hero Image"}
           layout="fill"
           objectFit="cover"
           quality={100}
@@ -34,14 +41,11 @@ export default async function AboutUs() {
         <Card className="relative max-w-xs sm:max-w-sm md:max-w-lg w-full bg-white shadow-xl my-16 md:my-12 p-6">
           <CardHeader className="px-0 py-4">
             <CardTitle className="text-center text-xl">
-              Getting started is the hardest part
+              {heroData?.title ?? "Getting started is the hardest part"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 px-0 pb-0 font-medium leading-8">
-            <p className="italic">
-              The most successful people don&apos;t look back to see who&apos;s
-              watching. Look for opportunities to lift others up along the way.
-            </p>
+            <p className="italic"></p>
             <p>
               Resilient, LLC maintains a network of subject matter experts
               across a wide spectrum of domains related to crises. We strive to
