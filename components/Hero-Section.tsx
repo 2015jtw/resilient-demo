@@ -19,7 +19,7 @@ export default async function HeroSection() {
         }
         alt={heroData.image?.alt || "Hero Image"}
         fill
-        objectFit="cover"
+        style={{ objectFit: "cover" }}
         className="absolute inset-0 z-0 filter brightness-50"
       />
       {/* <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-10"></div>{" "} */}

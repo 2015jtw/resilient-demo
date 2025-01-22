@@ -34,7 +34,7 @@ export default async function AboutUs() {
           }
           alt={heroData?.imageSrc?.alt ?? "Hero Image"}
           layout="fill"
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           quality={100}
           className="absolute inset-0"
         />
