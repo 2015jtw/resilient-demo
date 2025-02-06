@@ -13,7 +13,7 @@ import { SERVICES_QUERY } from "@/sanity/lib/queries";
 import { SERVICES_QUERYResult } from "@/sanity.types";
 import { client } from "../sanity/lib/client";
 
-const options = { next: { revalidate: 5 } };
+const options = { next: { revalidate: 30 } };
 
 export default async function Home() {
   const data: SERVICES_QUERYResult = await client.fetch(
