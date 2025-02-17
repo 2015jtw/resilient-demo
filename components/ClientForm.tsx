@@ -79,10 +79,7 @@ const ClientForm = () => {
 
   return (
     <Form {...form}>
-      <div
-        className="bg-white bg-dot-black/[0.2] relative px-4 py-12 pb-16 mt-1 "
-        id="contact-form"
-      >
+      <div className="bg-white bg-dot-black/[0.2] relative px-4 py-12 pb-16 mt-1 ">
         <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
         <h2 className="text-4xl text-center py-4">Contact Us</h2>
 

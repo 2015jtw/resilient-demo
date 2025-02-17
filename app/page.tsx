@@ -4,15 +4,14 @@ import { Fragment } from "react";
 // UI
 import AboutSection from "@/components/About";
 import HeroSection from "@/components/Hero-Section";
-import ClientForm from "@/components/ClientForm";
 import TwoColumnLayout from "@/components/TwoColumn";
 import Affiliations from "@/components/Affiliations";
+import ProtonMail from "@/components/ProtonMail";
 
 // Sanity
 import { SERVICES_QUERY } from "@/sanity/lib/queries";
 import { SERVICES_QUERYResult } from "@/sanity.types";
 import { client } from "../sanity/lib/client";
-import ProtonMail from "@/components/ProtonMail";
 
 const options = { next: { revalidate: 30 } };
 
@@ -66,7 +65,6 @@ export default async function Home() {
 
         <AboutSection />
         <Affiliations />
-        {/* <ClientForm /> */}
         <ProtonMail />
       </div>
     </>
