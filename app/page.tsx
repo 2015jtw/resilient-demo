@@ -12,6 +12,7 @@ import Affiliations from "@/components/Affiliations";
 import { SERVICES_QUERY } from "@/sanity/lib/queries";
 import { SERVICES_QUERYResult } from "@/sanity.types";
 import { client } from "../sanity/lib/client";
+import ProtonMail from "@/components/ProtonMail";
 
 const options = { next: { revalidate: 30 } };
 
@@ -65,7 +66,8 @@ export default async function Home() {
 
         <AboutSection />
         <Affiliations />
-        <ClientForm />
+        {/* <ClientForm /> */}
+        <ProtonMail />
       </div>
     </>
   );
