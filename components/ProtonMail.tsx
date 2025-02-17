@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 
@@ -13,14 +12,14 @@ const ProtonMail = () => {
           Contact Communications are encrypted for your privacy and security
         </p>
 
-        <Link href="mailto:dockevin@proton.me">
-          <Button>
+        <a href="mailto:dockevin@proton.me">
+          <Button className="group transform active:scale-95 transition-all duration-200 w-40 h-10 text-lg">
             Send Email{" "}
-            <span>
+            <span className="transition-transform duration-200 ease-in-out transform group-hover:translate-x-1">
               <Send />
             </span>
           </Button>
-        </Link>
+        </a>
       </div>
     </section>
   );
