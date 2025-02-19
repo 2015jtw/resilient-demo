@@ -47,8 +47,6 @@ export default function TailwindNav({
 
   useEffect(() => {}, [services]);
 
-  console.log("services: ", services);
-
   const icon_map = {
     "cloud-lightning": CloudLightning,
     "users-round": Users,
