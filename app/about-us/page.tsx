@@ -5,7 +5,7 @@ import Image from "next/image";
 // UI
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import TwoColumnLayout from "@/components/TwoColumn";
-import ClientForm from "@/components/ClientForm";
+import ProtonMail from "@/components/ProtonMail";
 
 // Sanity
 import { client } from "../../sanity/lib/client";
@@ -86,8 +86,8 @@ export default async function AboutUs() {
             />
           ))}
         </div>
+        <ProtonMail />
       </div>
-      <ClientForm />
     </>
   );
 }
