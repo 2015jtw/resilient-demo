@@ -30,7 +30,7 @@ export default async function Home() {
         <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
 
         <h2 className="text-center text-4xl pt-12 pb-8">Our Services</h2>
-        <div className="flex flex-col gap-30 w-full container mx-auto">
+        <div className="flex flex-col gap-30 w-full container mx-auto px-2">
           {data &&
             data.map((service, idx) => (
               <div key={idx}>
