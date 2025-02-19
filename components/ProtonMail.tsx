@@ -20,7 +20,7 @@ const ProtonMail = () => {
 
   return (
     <section className="px-4 py-12 pb-16" id="contact-form">
-      <div className="flex flex-col items-center py-10">
+      <div className="flex flex-col items-center py-10 space-y-4">
         <h2 className="text-4xl text-center py-4">Contact Us</h2>
 
         <p className="text-center text-lg pb-6 italic">

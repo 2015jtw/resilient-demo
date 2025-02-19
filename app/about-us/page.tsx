@@ -22,6 +22,10 @@ export default async function AboutUs() {
     (item) => item._id === "120fa5e3-cd00-446a-9956-01c86afa4912"
   );
 
+  const sectionData = data.filter(
+    (item) => item._id !== "120fa5e3-cd00-446a-9956-01c86afa4912"
+  );
+
   return (
     <>
       <div className="relative min-h-screen flex items-center justify-center pt-16 p-4 overflow-hidden">
@@ -61,7 +65,7 @@ export default async function AboutUs() {
         {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]"></div>
         <div className="container mx-auto py-2 px-4 max-w-5xl">
-          {data.map((section, idx) => (
+          {sectionData.map((section, idx) => (
             <TwoColumnLayout
               key={idx}
               item={{

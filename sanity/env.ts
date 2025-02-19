@@ -3,13 +3,13 @@ export const apiVersion =
 
 // use NEXT_PUBLIC_SANITY_STUDIO_DATASET for local development and SANITY_STUDIO_DATASET for production
 export const dataset = assertValue(
-  process.env.SANITY_STUDIO_DATASET,
+  process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET,
   "Missing environment variable: NEXT_PUBLIC_SANITY_STUDIO_DATASET"
 );
 
 // use NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID for local development and SANITY_STUDIO_PROJECT_ID for production
 export const projectId = assertValue(
-  process.env.SANITY_STUDIO_PROJECT_ID,
+  process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID,
   "Missing environment variable: NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID"
 );
 

@@ -84,6 +84,12 @@ export default function TailwindNav({
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          <Link
+            href="/"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary transition-colors"
+          >
+            Home
+          </Link>
           <Popover className="relative">
             {({ open }) => (
               <>

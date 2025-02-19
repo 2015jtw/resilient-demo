@@ -26,7 +26,7 @@ export default async function AboutSection() {
     : [];
 
   return (
-    <section className="py-8 md:pt-12" id="about">
+    <section className="py-8 md:py-12" id="about">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="text-4xl text-center mb-8">{about[0].title}</h2>
 
